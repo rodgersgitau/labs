@@ -12,7 +12,7 @@
 
 <hr/>
 
-#### [Live Demo](https://matrixdigitalrain.netlify)
+#### [Live Demo](https://matrixdigitalrain.netlify.com)
 
 
 #### Acknowledgements:
