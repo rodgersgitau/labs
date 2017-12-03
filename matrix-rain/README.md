@@ -10,12 +10,8 @@
 <br/>
 + Tools : **HTML5** + **Css3** & [p5.js](https://p5js.org/)
 
-<hr/>
+[####Live Demo](https://matrixdigitalrain.netlify)
 
-####[Live Demo](https://matrixdigitalrain.netlify)
-
-
-<hr/>
 
 #### Acknowledgements:
 + [The Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw)
