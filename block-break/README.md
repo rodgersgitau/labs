@@ -5,9 +5,9 @@ Block-Breaker Game
 This is the classic 2D block-breaker game built using **HTML5's Canvas** and **Vanilla JavaScript**
 <br/>
 
-**[Demo](https://block-breaker.netlify.com)**
+#### [Demo](https://block-breaker.netlify.com)
 
-####Screenshots
+#### Screenshots
 ![start](screenshots/start.png)
 
 ![gameplay](screenshots/gameplay.png)
@@ -18,5 +18,5 @@ This is the classic 2D block-breaker game built using **HTML5's Canvas** and **V
 
 ![win](screenshots/win.png)
 
-####Resources
+#### Resources
 [Mozilla Foundation](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
