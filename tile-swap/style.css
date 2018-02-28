@@ -17,13 +17,16 @@
   background: crimson;
   color: #fff;
 }
-
 .wrapper {
   width: 60vw;
   height: 80vh;
   margin: 10vh auto;
   background: #eee;
   box-shadow: var(--shadow);
+}
+canvas {
+  width: inherit;
+  height: inherit;
 }
 
 @media (max-width: 700px) {
