@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>BlockBreak Canvas</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="MessageBox">
+            <h2 id="Message"></h2>
+            <button id="btn"></button>
+        </div>
+        <canvas id="myCanvas" width="600" height="420"></canvas>
+    </div>
+    <div class="board">
+        <div class="scoreboard">
+            <h3>Highest Scores</h3>
+        </div>
+        <div class="rules">
+            <h3>Instructions</h3>
+            <ul>
+                <li>Move
+                    <b>Left</b> or
+                    <b>Right</b> using the Keyboard or
+                    <b>Mouse</b> to ensure the ball hits the paddle.</li>
+                <li>Click on screen or press
+                    <b>Spacebar</b> to pause game.</li>
+                <li>Clear all blocks by hitting them with the ball to win.</li>
+                <li>Miss the ball with your paddle &amp; lose a live</li>
+                <li>When you lose all your lives, it's game over.</li>
+                <li>Wait for game to reload after lossing / winning.</li>
+            </ul>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+
+</html>
