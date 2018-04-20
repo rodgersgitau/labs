@@ -1,0 +1,125 @@
+* {
+  /* reset */
+  padding: 0;
+  margin: 0;
+
+  /* colors */
+  --baseClr: #333;
+  --focusClr: crimson;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  width: 100vw;
+}
+.wrapper {
+  width: 90vw;
+  margin: 10px auto;
+}
+.wrapper .title {
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--baseClr);
+}
+.wrapper .form {
+  margin-bottom: 40px;
+  padding: 10px;
+  background: var(--baseClr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .form input[type="text"] {
+  font-size: 1rem;
+  padding: 10px;
+  margin-right: 20px;
+  width: 40%;
+}
+.wrapper .form input[type="submit"] {
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  padding: 10px;
+  background: var(--focusClr);
+  color: #fff;
+}
+.wrapper .row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+}
+.wrapper .row .card {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--baseClr);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.wrapper .row .card .card-header {
+  width: 100%;
+  padding: 5px 10px;
+  background: var(--baseClr);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.wrapper .row .card .card-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 20px 0;
+  }
+  .wrapper {
+    width: 80vw;
+    margin: auto;
+  }
+  .wrapper .row {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+    justify-content: space-around;
+  }
+
+  .wrapper .row .card:first-of-type {
+    grid-column: 1 / span 2;
+    margin: 0 auto;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 601px) and (max-width: 1025px) {
+  body {
+    padding: 20px 0;
+  }
+  .wrapper {
+    width: 80vw;
+    margin: auto;
+  }
+  .wrapper .row {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  .wrapper .row .card {
+    width: 250px;
+    height: 250px;
+  }
+  .wrapper .row .card:first-of-type {
+    grid-column: 1 / span 2;
+    justify-self: center;
+  }
+}
