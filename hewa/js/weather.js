@@ -1,9 +1,5 @@
 // Query Selectors
-const day1 = document.querySelector(".day1");
-const day2 = document.querySelector(".day2");
-const day3 = document.querySelector(".day3");
-const day4 = document.querySelector(".day4");
-const day5 = document.querySelector(".day5");
+const cardRow = document.querySelector(".row");
 const form = document.querySelector(".form");
 
 // Event Handlers
@@ -11,41 +7,8 @@ form.addEventListener("submit", obj => {
   obj.preventDefault();
   const city = form.querySelector(".input").value;
   getWeather(city);
+  form.reset();
 });
-
-//  Days Array
-const daysofWeek = {
-  1: "Monday",
-  2: "Tuesday",
-  3: "Wednesday",
-  4: "Thursday",
-  5: "Friday",
-  6: "Saturday",
-  7: "Sunday"
-};
-
-// Get the next 5 days
-function get5Days() {
-  let date = new Date();
-  let date1, date2, date3, date4, date5;
-
-  date1 = daysofWeek[date.getDay()];
-  date2 = get7Days(date.getDay() + 1);
-  date3 = get7Days(date.getDay() + 2);
-  date4 = get7Days(date.getDay() + 3);
-  date5 = get7Days(date.getDay() + 4);
-
-  day1.querySelector(".card-header").innerHTML = date1;
-  day2.querySelector(".card-header").innerHTML = date2;
-  day3.querySelector(".card-header").innerHTML = date3;
-  day4.querySelector(".card-header").innerHTML = date4;
-  day5.querySelector(".card-header").innerHTML = date5;
-}
-
-// Ensure 7 days limit
-function get7Days(date) {
-  return date > 7 ? daysofWeek[date - 7] : daysofWeek[date];
-}
 
 // Query weather by city
 const getWeather = async city => {
@@ -60,29 +23,90 @@ const getWeather = async city => {
   // Check if city weather information exists
   try {
     if (json["list"]) {
-      displayWeather(json);
+      filterWeather(json);
+    } else {
+      throw "Invalid City";
     }
-    throw "Invalid City";
   } catch (err) {
     console.log(err);
   }
 };
 
-// Display weather results
-function displayWeather(weather) {
-  let dayWeather;
-  console.log(weather);
+// Filter weather results
+function filterWeather(weather) {
   const weatherList = weather["list"].map(item => {
     return [
-      item["dt_txt"],
-      item["weather"][0]["main"],
-      item["weather"][0]["description"],
-      item["weather"][0]["icon"]
+      item.dt_txt.split(" ")[0],
+      item.weather[0].main,
+      item.weather[0].description,
+      item.weather[0].icon
     ];
   });
 
-  console.log(weatherList.filter(word => word[0].includes("12:00:00")));
+  // Get only one result per day
+  const dailyWeather = weatherList.filter(value => {
+    let day = value[0];
+    return !this[day] && (this[day] = true);
+  }, Object.create(null));
 
-  // console.log(dayWeather);
+  displayWeather(dailyWeather);
 }
-get5Days();
+
+//  Days Array
+const daysofWeek = {
+  0: "Sun",
+  1: "Mon",
+  2: "Tue",
+  3: "Wed",
+  4: "Thur",
+  5: "Fri",
+  6: "Sat"
+};
+
+// Months Array {
+const monthsofYear = {
+  1: "Jan",
+  2: "Feb",
+  3: "Mar",
+  4: "Apr",
+  5: "May",
+  6: "Jun",
+  7: "Jul",
+  8: "Aug",
+  9: "Sept",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec"
+};
+
+// display weather results
+function displayWeather(weather) {
+  weather.map(card => {
+    // Date formarting
+    let day = new Date(card[0]).getDay();
+    let month = new Date(card[0]).getMonth();
+    let year = new Date(card[0]).getFullYear();
+
+    // Daily Weather Card HTML
+    let cardHtml = `<div class="card">
+      <div class="card-header">
+        <img src="http://openweathermap.org/img/w/${card[3]}.png">    
+      </div>
+      <div class="card-main">
+        <div class="main-title">
+          <strong>${daysofWeek[day]} ${monthsofYear[month]} ${year}</strong> 
+        </div>                            
+        <div class="main-description">
+          <p>
+            <span>${card[1]}</span>
+            - 
+            <span>${card[2]}</span> 
+          </p>
+        </div>
+      </div>
+    </div>`;
+
+    // Append generated cards to page
+    cardRow.innerHTML += cardHtml;
+  });
+}
