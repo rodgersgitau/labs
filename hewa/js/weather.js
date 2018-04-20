@@ -1,3 +1,8 @@
+// Custom Title
+function titleBar(city) {
+  document.title = city;
+}
+
 // Query Selectors
 const cardRow = document.querySelector(".row");
 const form = document.querySelector(".form");
@@ -50,6 +55,10 @@ function filterWeather(weather) {
   }, Object.create(null));
 
   displayWeather(dailyWeather);
+
+  // send city & country to titleBar
+  let searchedCity = `${weather.city.name} , ${weather.city.country}`;
+  titleBar(searchedCity);
 }
 
 //  Days Array
