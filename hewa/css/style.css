@@ -52,7 +52,7 @@ body {
   background: var(--focusClr);
   color: #fff;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
 }
 .wrapper .row {
   height: inherit;

@@ -10,6 +10,8 @@ const form = document.querySelector(".form");
 // Event Handlers
 form.addEventListener("submit", obj => {
   obj.preventDefault();
+  // let cards = document.querySelectorAll(".card");
+  // cards.innerHTML = "";
   const city = form.querySelector(".input").value;
   getWeather(city);
   form.reset();
@@ -20,17 +22,19 @@ const getWeather = async city => {
   const api = "http://api.openweathermap.org/data/2.5/forecast";
   const key = "076edd5af057e8fcf6ec915f9f4e66cf";
 
-  const response = await fetch(`${api}?q=${city}&appid=${key}`).catch(err => {
-    console.log(err);
-  });
-  const json = await response.json();
-
-  // Check if city weather information exists
   try {
-    if (json["list"]) {
-      filterWeather(json);
-    } else {
-      throw "Invalid City";
+    const response = await fetch(`${api}?q=${city}&appid=${key}`);
+
+    // Check for response
+    if (response != "") {
+      const json = await response.json();
+
+      // Check if city weather information exists
+      if (json["list"]) {
+        filterWeather(json);
+      } else {
+        throw "Invalid City";
+      }
     }
   } catch (err) {
     console.log(err);
@@ -54,6 +58,7 @@ function filterWeather(weather) {
     return !this[day] && (this[day] = true);
   }, Object.create(null));
 
+  console.log(dailyWeather);
   displayWeather(dailyWeather);
 
   // send city & country to titleBar
