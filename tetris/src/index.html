@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#CBDBB1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Play Tetris | Free Online Tetris Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Play Tetris for free. Browser-based online Tetris game with no download required."
+    />
+    <link rel="shortcut icon" href="../public/favicon.png" type="image/png" />
+    <link preload rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body
+    class="relative max-w-screen max-h-screen py-16 md:py-12 px-2 bg-kelp text-sprout-50 w-full h-[100vh] flex items-center justify-center"
+  >
+    <main
+      class="w-full max-w-[30rem] lg:w-2/3 h-full flex flex-col gap-10 items-center justify-center"
+    >
+      <!-- Header -->
+      <header class="w-full h-[10vh] flex items-center gap-8">
+        <!-- Title -->
+        <div class="w-2/3 h-full flex items-center">
+          <img
+            width="240"
+            height="100"
+            class="w-[240] h-auto object-cover"
+            src="../public/logo.png"
+          />
+        </div>
+
+        <!-- Scores -->
+        <div class="w-max h-max p-4 rounded bg-kelp-900 text-white">
+          <div class="flex items-center gap-4">
+            <span class="font-sans text-xl font-bold uppercase">Score</span>
+            <span id="totalScore" class="font-sans text-3xl font-black"
+              >00</span
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Canvas -->
+      <section class="flex-1 h-[75vh] w-full border-2 bg-sprout rounded-lg">
+        <canvas class="w-full h-full !bg-inherit" id="board">
+          <div class="flex items-center flex-col gap-8">
+            <span class="text-4xl">Tetris</span>
+            <span class="font-semibold">00</span>
+          </div>
+        </canvas>
+      </section>
+    </main>
+
+    <!-- Buttons -->
+    <div
+      class="absolute top-1 left-1 right-1 md:top-8 md:left-[unset] md:right-8 z-20"
+    >
+      <div class="flex md:flex-col items-center justify-center gap-4">
+        <!-- Tutorial Toggle Button -->
+        <button
+          id="btn-tutorial"
+          class="md:w-[140] lg:w-[240] text-sm lg:text-base bg-kelp-900/75 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+        >
+          Open Tutorial - [Q]
+        </button>
+
+        <!-- Game Start Button -->
+        <button
+          id="btn-start"
+          class="md:w-[140] lg:w-[240] text-sm lg:text-base bg-kelp-900/75 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+        >
+          Start Game - [P]
+        </button>
+
+        <!-- Game Reset Buttonn -->
+        <button
+          id="btn-reset"
+          class="md:w-[140] lg:w-[240] text-sm lg:text-base bg-kelp-900/75 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+        >
+          Reset Game - [R]
+        </button>
+      </div>
+    </div>
+
+    <!-- Tutorial -->
+    <div
+      id="tutorial"
+      class="hidden z-10 absolute inset-0 p-8 rounded-lg bg-kelp/70"
+    >
+      <div
+        class="items-center flex flex-col lg:flex-row gap-8 min-w-[90%] h-full"
+      >
+        <div class="w-full lg:w-1/2 bg-kelp-800 p-8 rounded-lg">
+          <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+              <h1 class="lg:text-2xl font-black font-sans uppercase">
+                About Tetris
+              </h1>
+              <p class="lg:text-base leading-snug font-serif">
+                Tetris® is the addictive puzzle game that started it all,
+                embracing our universal desire to create order out of chaos. The
+                Tetris game was created by Alexey Pajitnov in 1984—the product
+                of Alexey’s computer programming experience and his love of
+                puzzles. In the decades to follow, Tetris became one of the most
+                successful and recognizable video games, appearing on nearly
+                every gaming platform available. This page is the official
+                destination for free online single-player Tetris. Click PLAY to
+                start playing one of the world’s most popular puzzle games now!
+              </p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <h1 class="lg:text-2xl font-black font-sans uppercase">
+                Objective
+              </h1>
+              <p class="lg:text-base leading-snug font-serif">
+                The goal of Tetris is to score as many points as possible by
+                clearing horizontal lines of Blocks. The player must rotate,
+                move, and drop the falling Tetriminos inside the Matrix (playing
+                field). Lines are cleared when they are filled with Blocks and
+                have no empty spaces. As lines are cleared, the level increases
+                and Tetriminos fall faster, making the game progressively more
+                challenging. If the Blocks land above the top of the playing
+                field, the game is over.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full lg:h-1/2 lg:w1/2 p-4 lg:p-8 rounded-lg flex items-center bg-sprout"
+        >
+          <img
+            width="240"
+            height="240"
+            src="../public/controls.webp"
+            class="w-auto h-auto object-cover object-center"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script async src="./index.js"></script>
+  </body>
+</html>
