@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="theme-color" content="#CBDBB1" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Play Tetris | Free Online Tetris Game</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
@@ -12,6 +12,7 @@
     />
     <link rel="shortcut icon" href="../public/favicon.png" type="image/png" />
     <link preload rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   </head>
   <style>
     body {
@@ -21,21 +22,17 @@
       animation: fadeIn 1 1s ease-out;
     }
   </style>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"
-  ></script>
 
   <body
-    class="relative max-w-screen max-h-screen py-16 md:py-12 px-2 bg-kelp text-sprout-50 w-full h-[100vh] flex items-center justify-center"
+    class="relative w-screen h-screen bg-kelp text-sprout-50 flex items-center"
   >
-    <main
-      class="w-full max-w-[30rem] lg:w-2/3 h-full flex flex-col gap-10 items-center justify-center"
+    <div
+      class="relative w-full max-w-[40rem] h-full m-auto p-4 md:p-4 lg:p-6 flex flex-col gap-6 md:gap-12 lg:gap-16 xl:gap-20"
     >
       <!-- Header -->
-      <header class="w-full h-[10vh] flex items-center gap-8">
-        <!-- Title -->
-        <div class="w-2/3 h-full flex items-center">
+      <header class="w-full h-[10vh] flex items-center justify-between gap-8">
+        <!-- Header Title -->
+        <div class="w-max h-full flex items-center">
           <img
             width="240"
             height="100"
@@ -44,63 +41,138 @@
           />
         </div>
 
-        <!-- Scores -->
-        <div class="w-max h-max p-4 rounded bg-kelp-900 text-white">
-          <div class="flex items-center gap-4">
-            <span class="font-sans text-xl font-bold uppercase">Score</span>
-            <span id="total-score" class="font-sans text-3xl font-black"
-              >00</span
-            >
+        <!-- Header Scores -->
+        <div class="w-max min-w-[120] h-full flex flex-col gap-1">
+          <div class="w-full px-2.5 py-1.5 rounded bg-kelp-900 text-white">
+            <div class="w-full flex items-center gap-8 text-left">
+              <span class="w-1/2 font-sans text-lg font-bold uppercase"
+                >Score</span
+              >
+              <span
+                id="total-score"
+                class="flex-1 text-right font-sans text-xl font-black"
+                >0</span
+              >
+            </div>
+          </div>
+          <div class="w-full px-2.5 py-1.5 rounded bg-kelp-900 text-white">
+            <div class="w-full flex items-center gap-8 text-left">
+              <span class="w-1/2 font-sans text-lg font-bold uppercase"
+                >Best</span
+              >
+              <span
+                id="best-score"
+                class="flex-1 text-right font-sans text-xl font-black"
+                >0</span
+              >
+            </div>
           </div>
         </div>
       </header>
 
       <!-- Canvas -->
-      <section class="flex-1 h-[75vh] w-full border-2 bg-sprout rounded-lg">
-        <canvas class="w-full h-full !bg-inherit" id="board">
+
+      <main
+        class="w-max h-max m-auto gap-8 flex items-center rounded-md p-2 border-sprout justify-center border-2"
+      >
+        <canvas id="board" width="340" height="580" class="m-auto">
           <div class="flex items-center flex-col gap-8">
             <span class="text-4xl">Error: Javascript Disabled!!</span>
           </div>
         </canvas>
-      </section>
-    </main>
+      </main>
 
-    <!-- Buttons -->
-    <div
-      class="absolute top-1 left-1 right-1 md:top-8 md:left-[unset] md:right-8 z-20"
-    >
-      <div class="flex md:flex-col items-center justify-center gap-4">
-        <!-- Tutorial Toggle Button -->
-        <button
-          id="btn-tutorial"
-          class="md:w-[140] lg:w-[240] text-sm lg:text-base bg-kelp-900/75 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
-        >
-          Open Tutorial - [Q]
-        </button>
+      <footer class="h-[15vh] z-20 w-full">
+        <!-- Buttons -->
 
-        <!-- Game Start Button -->
-        <button
-          id="btn-start"
-          class="md:w-[140] lg:w-[240] text-sm lg:text-base bg-kelp-900/75 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
-        >
-          Start Game - [P]
-        </button>
+        <div class="flex gap-4 items-center w-full">
+          <!-- Guide Toggle Button -->
+          <button
+            id="btn-guide"
+            class="flex-1 max-h-[8rem] bg-kelp-800 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+          >
+            Guide [Q]
+          </button>
 
-        <!-- Game Reset Buttonn -->
-        <button
-          id="btn-reset"
-          class="md:w-[140] lg:w-[240] text-sm lg:text-base bg-kelp-900/75 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+          <!-- Game Start Button -->
+          <button
+            id="btn-start"
+            class="flex-1 max-h-[8rem] bg-kelp-800 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+          >
+            Start [P]
+          </button>
+
+          <!-- Game Reset Buttonn -->
+          <button
+            id="btn-reset"
+            class="flex-1 max-h-[8rem] bg-kelp-800 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+          >
+            Reset [R]
+          </button>
+          <button
+            id="btn-mute"
+            class="flex-1 max-h-[8rem] bg-kelp-800 hover:bg-kelp-900 font-semibold text-sprout rounded p-2 lg:px-4 lg:py-3"
+          >
+            Mute [M]
+          </button>
+        </div>
+        <div class="w-full my-4 flex items-center justify-between flex-wrap">
+          <p>
+            <span class="text-sm pr-2"> Sound Effect from</span>
+            <a
+              class="pointer font-black hover:underline hover:underline-offset-2 transition-all"
+              href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=92075"
+              >Pixabay</a
+            >
+          </p>
+          <p>
+            <span class="text-sm pr-2"> Built with &hearts; by</span>
+            <a
+              href="https://rodgersgitau.vercel.app"
+              class="pointer font-black hover:underline hover:underline-offset-2 transition-all"
+              >Rodgers M Gitau</a
+            >
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Hidden Sounds -->
+    <audio loop hidden id="soundtrack" aria-hidden="true">
+      <source src="../public/soundtrack.mp3" type="audio/mpeg" />
+      <source src="../public/soundtrack.ogg" type="audio/ogg" />
+
+      <p class="text-red-900">
+        This text displays if the audio tag isn't supported.
+      </p>
+    </audio>
+
+    <audio hidden id="removetrack" aria-hidden="true">
+      <source src="../public/remove.mp3" type="audio/mpeg" />
+      <source src="../public/remove.ogg" type="audio/ogg" />
+    </audio>
+
+    <audio hidden id="gameover" aria-hidden="true">
+      <source src="../public/game-over.mp3" type="audio/mpeg" />
+      <source src="../public/game-over.ogg" type="audio/ogg" />
+    </audio>
+
+    <!-- Alert -->
+    <div id="alert" class="flex absolute inset-0 z-10 bg-kelp/70 items-center">
+      <div
+        class="flex items-center justify-center m-auto w-max h-max p-10 rounded-lg bg-kelp-900"
+      >
+        <h1
+          id="alert-content"
+          class="text-2xl xl:text-3xl capitalize font-sans"
         >
-          Reset Game - [R]
-        </button>
+          To start game press [P]
+        </h1>
       </div>
     </div>
 
-    <!-- Tutorial -->
-    <div
-      id="tutorial"
-      class="hidden z-10 absolute inset-0 p-8 rounded-lg bg-kelp/70"
-    >
+    <!-- Guide -->
+    <div id="guide" class="hidden absolute inset-0 z-10 bg-kelp/70">
       <div
         class="items-center flex flex-col lg:flex-row gap-8 min-w-[90%] h-full"
       >
@@ -144,7 +216,7 @@
         >
           <img
             width="240"
-            height="240"
+            height="full"
             src="../public/controls.webp"
             class="w-auto h-auto object-cover object-center"
           />
@@ -152,7 +224,7 @@
       </div>
     </div>
     <div id="particles" class="absolute z-0 inset-0"></div>
-
+    <script src="./tetrominoes.js"></script>
     <script async src="./index.js"></script>
   </body>
 </html>
