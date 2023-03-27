@@ -1,7 +1,7 @@
 {
   "name": "tetris",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "A tetris clone game",
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
@@ -9,8 +9,7 @@
     "build": "parcel build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Rodgers M Gitau <rodgersgitau>",
   "devDependencies": {
     "parcel": "^2.8.3",
     "postcss": "^8.4.21",
