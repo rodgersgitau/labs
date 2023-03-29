@@ -1,0 +1,27 @@
+{
+  "name": "noughts-and-crosses",
+  "version": "1.0.0",
+  "description": "A tic-tac-toe clone game",
+  "source": "src/index.html",
+  "staticFiles": {
+    "staticPath": "public/",
+    "watcherGlob": "**"
+  },
+  "scripts": {
+    "start": "parcel",
+    "dev": "parcel watch",
+    "build": "rm -rf dist && parcel build"
+  },
+  "keywords": [
+    "tictactoe",
+    "Javascript game",
+    "parcel"
+  ],
+  "author": "Rodgers M Gitau <rodgersgitau>",
+  "devDependencies": {
+    "parcel": "latest",
+    "postcss": "^8.4.21",
+    "sharp": "^0.31.3",
+    "tailwindcss": "^3.2.7"
+  }
+}

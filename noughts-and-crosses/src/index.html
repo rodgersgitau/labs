@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Noughts & Crosses | Free Online TicTacToe</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Play TicTacToe for free. Browser-based online noughts & crosses game with no download required."
+    />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="shortcut icon" href="../public/favicon.png" type="image/png" />
+  </head>
+  <style>
+    body {
+      -webkit-animation: fadeIn 1 1s ease-out;
+      -moz-animation: fadeIn 1 1s ease-out;
+      -o-animation: fadeIn 1 1s ease-out;
+      animation: fadeIn 1 1s ease-out;
+    }
+  </style>
+
+  <body
+    class="relative flex items-center w-screen h-screen text-white bg-neutral-800"
+  >
+    <div
+      class="flex flex-col w-full h-full gap-6 p-8 md:gap-12 lg:gap-16 xl:gap-50 max-w-[40rem] m-auto"
+    >
+      <!-- Header -->
+      <header class="w-full h-[10vh] flex justify-between items-center">
+        <img
+          width="80"
+          height="80"
+          src="../public/logo.png"
+          class="w-[80] h-[80] object-cover"
+        />
+        <span
+          class="font-sans text-3xl font-black leading-loose text-center capitalize"
+        >
+          Nought & Crosses
+        </span>
+        <button
+          id="btn-sound"
+          class="p-4 bg-transparent border-none w-max h-max"
+        >
+          <img
+            width="50"
+            height="50"
+            id="sound-off"
+            src="../public/sound-off.svg"
+            class="w-[50] h-[50] object-cover"
+          />
+          <img
+            width="50"
+            height="50"
+            id="sound-on"
+            src="../public/sound-on.svg"
+            class="hidden w-[50] h-[50] object-cover"
+          />
+        </button>
+      </header>
+
+      <!-- Canvas -->
+      <main class="relative flex-1 w-max h-max">
+        <canvas
+          id="board"
+          width="340"
+          height="580"
+          class="absolute top-[50%] translate-y-[-50%] w-full"
+        >
+          <div class="flex flex-col items-center gap-8">
+            <span class="text-4xl">Error: Javascript Disabled!!</span>
+          </div>
+        </canvas>
+      </main>
+    </div>
+
+    <!-- Alert -->
+    <div
+      id="alert"
+      class="absolute inset-0 z-10 flex items-center cursor-pointer bg-neutral/70"
+    >
+      <div
+        class="flex items-center justify-center p-10 m-auto rounded-lg w-max h-max bg-neutral-900"
+      >
+        <h1
+          id="alert-content"
+          class="font-sans text-2xl capitalize xl:text-3xl"
+        >
+          To start game press [P]
+        </h1>
+      </div>
+    </div>
+
+    <!-- Hidden Sounds -->
+    <audio hidden id="note-high" aria-hidden="true">
+      <source src="../public/note-high.mp3" type="audio/mpeg" />
+    </audio>
+    <audio hidden id="note-low" aria-hidden="true">
+      <source src="../public/note-low.mp3" type="audio/mpeg" />
+    </audio>
+    <audio hidden id="game-over" aria-hidden="true">
+      <source src="../public/game-over.mp3" type="audio/mpeg" />
+    </audio>
+    <audio hidden id="game-tie" aria-hidden="true">
+      <source src="../public/game-over-tie.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Scripts -->
+    <script async src="./index.js"></script>
+  </body>
+</html>
