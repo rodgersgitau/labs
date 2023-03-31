@@ -25,10 +25,10 @@
     class="relative flex items-center w-screen h-screen text-white bg-neutral-800"
   >
     <div
-      class="flex flex-col w-full h-full gap-6 p-8 md:gap-12 lg:gap-16 xl:gap-50 max-w-[40rem] m-auto"
+      class="flex flex-col w-full h-full gap-6 p-6 md:gap-12 lg:gap-16 xl:gap-50 lg:max-w-[40rem] m-auto"
     >
       <!-- Header -->
-      <header class="w-full h-[10vh] flex justify-between items-center">
+      <header class="w-full h-[10vh] flex gap-4 justify-between items-center">
         <img
           width="80"
           height="80"
@@ -36,61 +36,57 @@
           class="w-[80] h-[80] object-cover"
         />
         <span
-          class="font-sans text-3xl font-black leading-loose text-center capitalize"
+          class="font-sans text-xl font-black leading-loose text-center capitalize md:text-3xl"
         >
           Nought & Crosses
         </span>
+
         <button
           id="btn-sound"
-          class="p-4 bg-transparent border-none w-max h-max"
+          class="p-4 border-none w-[5rem] h-[5rem] rounded-full"
         >
           <img
-            width="50"
-            height="50"
             id="sound-off"
             src="../public/sound-off.svg"
-            class="w-[50] h-[50] object-cover"
+            class="object-cover w-full h-auto"
           />
           <img
-            width="50"
-            height="50"
             id="sound-on"
             src="../public/sound-on.svg"
-            class="hidden w-[50] h-[50] object-cover"
+            class="hidden object-cover w-full h-auto"
           />
         </button>
       </header>
 
       <!-- Canvas -->
-      <main class="relative flex-1 w-max h-max">
+      <main class="relative flex-1">
         <canvas
           id="board"
-          width="340"
-          height="580"
-          class="absolute top-[50%] translate-y-[-50%] w-full"
+          width="500"
+          height="500"
+          class="absolute inset-0 top-[50%] translate-y-[-50%]"
         >
           <div class="flex flex-col items-center gap-8">
             <span class="text-4xl">Error: Javascript Disabled!!</span>
           </div>
         </canvas>
-      </main>
-    </div>
-
-    <!-- Alert -->
-    <div
-      id="alert"
-      class="absolute inset-0 z-10 flex items-center cursor-pointer bg-neutral/70"
-    >
-      <div
-        class="flex items-center justify-center p-10 m-auto rounded-lg w-max h-max bg-neutral-900"
-      >
-        <h1
-          id="alert-content"
-          class="font-sans text-2xl capitalize xl:text-3xl"
+        <!-- Alert -->
+        <div
+          id="alert"
+          class="absolute inset-0 z-20 flex items-center cursor-pointer bg-neutral/70"
         >
-          To start game press [P]
-        </h1>
-      </div>
+          <div
+            class="flex items-center justify-center p-10 m-auto rounded-lg w-max h-max bg-neutral-900"
+          >
+            <h1
+              id="alert-content"
+              class="font-sans text-2xl capitalize xl:text-3xl"
+            >
+              To start game press [P]
+            </h1>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Hidden Sounds -->
