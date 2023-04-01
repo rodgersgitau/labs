@@ -10,6 +10,7 @@
       content="Play TicTacToe for free. Browser-based online noughts & crosses game with no download required."
     />
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="../public/favicon.png" type="image/png" />
   </head>
   <style>
@@ -21,89 +22,269 @@
     }
   </style>
 
-  <body
-    class="relative flex items-center w-screen h-screen text-white bg-neutral-800"
-  >
-    <div
-      class="flex flex-col w-full h-full gap-6 p-6 md:gap-12 lg:gap-16 xl:gap-50 lg:max-w-[40rem] m-auto"
+  <body>
+    <!-- Confetti Animation -->
+    <section class="confetti" id="confetti">
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+    </section>
+
+    <main
+      class="min-h-screen mx-auto bg-[whitesmoke] text-neutral-900"
+      id="canvas"
     >
       <!-- Header -->
-      <header class="w-full h-[10vh] flex gap-4 justify-between items-center">
-        <img
-          width="80"
-          height="80"
-          src="../public/logo.png"
-          class="w-[80] h-[80] object-cover"
-        />
-        <span
-          class="font-sans text-xl font-black leading-loose text-center capitalize md:text-3xl"
-        >
-          Nought & Crosses
-        </span>
-
-        <button
-          id="btn-sound"
-          class="p-4 border-none w-[5rem] h-[5rem] rounded-full"
-        >
-          <img
-            id="sound-off"
-            src="../public/sound-off.svg"
-            class="object-cover w-full h-auto"
-          />
-          <img
-            id="sound-on"
-            src="../public/sound-on.svg"
-            class="hidden object-cover w-full h-auto"
-          />
-        </button>
+      <header
+        class="sticky top-0 z-10 flex items-center justify-center h-6 px-4 text-xs font-medium border-b border-current backdrop-filter backdrop-blur bg-opacity-30 md:h-14 md:text-lg sm:px-6 lg:px-8"
+      >
+        Noughts & Crosses
       </header>
 
-      <!-- Canvas -->
-      <main class="relative flex-1">
-        <canvas
-          id="board"
-          width="500"
-          height="500"
-          class="absolute inset-0 top-[50%] translate-y-[-50%]"
-        >
-          <div class="flex flex-col items-center gap-8">
-            <span class="text-4xl">Error: Javascript Disabled!!</span>
+      <!-- Board -->
+      <section class="p-5">
+        <div class="relative flex justify-center">
+          <div class="grid grid-cols-3 board" id="board">
+            <div
+              id="0"
+              class="flex items-center justify-center w-20 h-20 text-3xl cell md:w-32 md:h-32"
+            ></div>
+            <div
+              id="1"
+              class="flex items-center justify-center w-20 h-20 text-3xl border-current cell border-x md:w-32 md:h-32"
+            ></div>
+            <div
+              id="2"
+              class="flex items-center justify-center w-20 h-20 text-3xl cell md:w-32 md:h-32"
+            ></div>
+            <div
+              id="3"
+              class="flex items-center justify-center w-20 h-20 text-3xl border-current cell border-y md:w-32 md:h-32"
+            ></div>
+            <div
+              id="4"
+              class="flex items-center justify-center w-20 h-20 text-3xl border border-current cell md:w-32 md:h-32"
+            ></div>
+            <div
+              id="5"
+              class="flex items-center justify-center w-20 h-20 text-3xl border-current cell border-y md:w-32 md:h-32"
+            ></div>
+            <div
+              id="6"
+              class="flex items-center justify-center w-20 h-20 text-3xl cell md:w-32 md:h-32"
+            ></div>
+            <div
+              id="7"
+              class="flex items-center justify-center w-20 h-20 text-3xl border-current cell border-x md:w-32 md:h-32"
+            ></div>
+            <div
+              id="8"
+              class="flex items-center justify-center w-20 h-20 text-3xl cell md:w-32 md:h-32"
+            ></div>
           </div>
-        </canvas>
-        <!-- Alert -->
-        <div
-          id="alert"
-          class="absolute inset-0 z-20 flex items-center cursor-pointer bg-neutral/70"
+
+          <div id="win-line"></div>
+        </div>
+      </section>
+
+      <!-- Board Players -->
+      <section class="flex items-center justify-center pb-12 mb-5">
+        <ul
+          role="list"
+          class="grid grid-cols-1 gap-10 mt-10 md:grid-cols-2 md:gap-20"
         >
+          <li>
+            <div class="relative flex items-center gap-x-1">
+              <img
+                id="player-x-avatar"
+                class="object-cover rounded-full h-14 w-14 md:h-28 md:w-28"
+                src="../public/icons/player-x.svg"
+                alt="player-x"
+              />
+              <img
+                id="player-x-trophy"
+                class="trophy animate-wiggle"
+                src="../public/images/trophy.png"
+                alt="trophy"
+              />
+
+              <div class="ml-4">
+                <h3
+                  id="player-x-name"
+                  class="text-base font-semibold leading-7 tracking-tight text-current animate-bounce"
+                >
+                  Player X
+                </h3>
+                <p class="text-xs text-neutral-500">
+                  Score: <span id="player-x-score">0</span>
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="relative flex items-center gap-x-1">
+              <img
+                id="player-x-avatar"
+                class="object-cover rounded-full h-14 w-14 md:h-28 md:w-28"
+                src="../public/icons/player-o.svg"
+                alt="player-O"
+              />
+              <img
+                id="player-o-trophy"
+                class="trophy animate-wiggle"
+                src="../public/images/trophy.png"
+                alt="trophy"
+              />
+
+              <div class="ml-4">
+                <h3
+                  id="player-o-name"
+                  class="text-base font-semibold leading-7 tracking-tight text-current"
+                >
+                  Player O
+                </h3>
+                <p class="text-xs text-neutral-500">
+                  Score: <span id="player-o-score">0</span>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Board Actions -->
+      <section class="flex items-center justify-center mt-10 space-x-4 ignore">
+        <button
+          disabled
+          type="button"
+          id="reset-game-action"
+          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
+        >
+          Reset Game
+        </button>
+        <button
+          disabled
+          type="button"
+          id="reset-score-action"
+          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
+        >
+          Reset Score
+        </button>
+        <button
+          disabled
+          type="button"
+          id="download-action"
+          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
+        >
+          Download
+        </button>
+      </section>
+
+      <!-- Draw Modal -->
+      <div
+        id="draw-modal"
+        class="relative z-10 hidden ignore"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="fixed inset-0 transition-opacity bg-opacity-75 bg-neutral-500"
+        ></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
           <div
-            class="flex items-center justify-center p-10 m-auto rounded-lg w-max h-max bg-neutral-900"
+            class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0"
           >
-            <h1
-              id="alert-content"
-              class="font-sans text-2xl capitalize xl:text-3xl"
+            <div
+              class="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-lg"
             >
-              To start game press [P]
-            </h1>
+              <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                  <div
+                    class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10"
+                  >
+                    <svg
+                      class="w-6 h-6 text-red-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3
+                      class="text-base font-semibold leading-6 text-neutral-900"
+                      id="modal-title"
+                    >
+                      Game ended in a draw!
+                    </h3>
+                    <div class="mt-2">
+                      <p class="text-sm text-neutral-500">
+                        The game has ended in a draw. Both players have played
+                        their best moves but neither has been able to claim
+                        victory. Don't worry though, there's always a chance for
+                        a rematch. Keep practicing your Tic Tac Toe skills and
+                        try again soon.
+                      </p>
+                      <p class="mt-3 text-sm text-neutral-500">
+                        Thanks for playing and we hope you enjoyed the game!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end px-4 py-3 bg-neutral-50 sm:px-6">
+                <button
+                  id="alright-action"
+                  type="button"
+                  class="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold bg-white rounded-md shadow-sm text-neutral-900 ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 sm:mt-0 sm:w-auto"
+                >
+                  Alright
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
 
-    <!-- Hidden Sounds -->
-    <audio hidden id="note-high" aria-hidden="true">
-      <source src="../public/note-high.mp3" type="audio/mpeg" />
-    </audio>
-    <audio hidden id="note-low" aria-hidden="true">
-      <source src="../public/note-low.mp3" type="audio/mpeg" />
-    </audio>
-    <audio hidden id="game-over" aria-hidden="true">
-      <source src="../public/game-over.mp3" type="audio/mpeg" />
-    </audio>
-    <audio hidden id="game-tie" aria-hidden="true">
-      <source src="../public/game-over-tie.mp3" type="audio/mpeg" />
-    </audio>
+      <!-- Hidden Sounds -->
+      <audio hidden id="note-high" aria-hidden="true">
+        <source src="../public/sounds/note-high.mp3" type="audio/mpeg" />
+      </audio>
+      <audio hidden id="note-low" aria-hidden="true">
+        <source src="../public/sounds/note-low.mp3" type="audio/mpeg" />
+      </audio>
+      <audio hidden id="game-over" aria-hidden="true">
+        <source src="../public/sounds/game-over.mp3" type="audio/mpeg" />
+      </audio>
+      <audio hidden id="game-tie" aria-hidden="true">
+        <source src="../public/sounds/game-over-tie.mp3" type="audio/mpeg" />
+      </audio>
+    </main>
 
     <!-- Scripts -->
-    <script async src="./index.js"></script>
+    <script src="../public/vendor/confetti.browser.min.js"></script>
+    <script src="../public/vendor/html2canvas.min.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>
