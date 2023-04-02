@@ -42,18 +42,18 @@
     </section>
 
     <main
-      class="min-h-screen mx-auto bg-[whitesmoke] text-neutral-900"
+      class="min-h-screen mx-auto bg-[whitesmoke] text-neutral-900 dark:bg-neutral-800 dark:text-[whitesmoke]"
       id="canvas"
     >
       <!-- Header -->
       <header
-        class="sticky top-0 z-10 flex items-center justify-center h-6 px-4 text-xs font-medium border-b border-current backdrop-filter backdrop-blur bg-opacity-30 md:h-14 md:text-lg sm:px-6 lg:px-8"
+        class="sticky top-0 z-10 flex items-center justify-center h-6 px-4 text-lg font-medium border-b border-current backdrop-filter backdrop-blur bg-opacity-30 md:h-14 xl:text-xl sm:px-6 lg:px-8"
       >
         Noughts & Crosses
       </header>
 
       <!-- Board -->
-      <section class="p-5">
+      <section class="px-5 py-8">
         <div class="relative flex justify-center">
           <div class="grid grid-cols-3 board" id="board">
             <div
@@ -136,7 +136,7 @@
           <li>
             <div class="relative flex items-center gap-x-1">
               <img
-                id="player-x-avatar"
+                id="player-o-avatar"
                 class="object-cover rounded-full h-14 w-14 md:h-28 md:w-28"
                 src="../public/icons/player-o.svg"
                 alt="player-O"
@@ -170,7 +170,7 @@
           disabled
           type="button"
           id="reset-game-action"
-          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
+          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm dark:bg-white dark:text-neutral-900 dark:disabled:bg-neutral-700 bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
         >
           Reset Game
         </button>
@@ -178,7 +178,7 @@
           disabled
           type="button"
           id="reset-score-action"
-          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
+          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm dark:bg-white dark:text-neutral-900 dark:disabled:bg-neutral-700 bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
         >
           Reset Score
         </button>
@@ -186,7 +186,7 @@
           disabled
           type="button"
           id="download-action"
-          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
+          class="inline-flex justify-center px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm dark:bg-white dark:text-neutral-900 dark:disabled:bg-neutral-700 bg-neutral-900 border-neutral-900 hover:bg-neutral-800 sm:w-auto disabled:cursor-not-allowed disabled:bg-neutral-300"
         >
           Download
         </button>

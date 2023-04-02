@@ -9,9 +9,9 @@ const WINNING_PROBABILITIES = [
   [2, 4, 6],
 ];
 
+let avatarX, avatarO;
 let currentPlayer = "X";
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
-let avatarX, avatarO;
 
 const cells = document.querySelectorAll(".cell");
 
@@ -48,6 +48,11 @@ const drawModal = document.getElementById("draw-modal");
 
 function onMount() {
   syncScoreStatus();
+
+  if (playerOAvatar && playerXAvatar) {
+    avatarO = playerOAvatar.src;
+    avatarX = playerXAvatar.src;
+  }
 
   resetGameAction.addEventListener("click", onResetGame);
   alrightAction.addEventListener("click", onResetGame);
