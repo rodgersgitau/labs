@@ -3,11 +3,37 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          DEFAULT: "#170f1d",
+        },
+        secondary: {
+          DEFAULT: "#29203F",
+        },
+      },
       fontFamily: {
         cursive: ["Comfortaa", "cursive"],
         serif: ["Fira Sans Condensed", "sans-serif"],
       },
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#170f1d",
+          secondary: "#29203F",
+          "base-100": "whitesmoke",
+
+          "--btn-text-case": "capitalize",
+        },
+      },
+      "lofi",
+    ],
+  },
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("daisyui"),
+  ],
 };
