@@ -60,7 +60,12 @@ typings/
 # dotenv environment variables file
 .env
 
-# Parcel related files
+# dist/build
 dist/
+
+# Parcel related files
 .cache/
 .parcel-cache
+
+# Vite related files
+.vite
