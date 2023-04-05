@@ -12,12 +12,21 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/node": "^18.15.11",
+    "@types/three": "^0.150.1",
+    "@types/toastify-js": "^1.11.1",
     "autoprefixer": "^10.4.14",
+    "daisyui": "^2.51.5",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.3",
     "vite": "^4.2.1"
   },
   "dependencies": {
-    "three": "^0.151.3"
+    "@tweenjs/tween.js": "^19.0.0",
+    "three": "^0.151.3",
+    "toastify-js": "^1.12.0"
   }
 }
