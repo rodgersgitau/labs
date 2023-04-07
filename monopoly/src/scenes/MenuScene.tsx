@@ -2,20 +2,26 @@ import {
   AmbientLight,
   AnimationMixer,
   Clock,
+  Color,
   DirectionalLight,
   Scene,
-  TextureLoader,
 } from "three";
 
-import bgImage from "../assets/images/background.jpg";
+import { IUser, User } from "../objects";
+import { createToast } from "../utils";
+
+const formUser = document.querySelector("#form-user") as HTMLFormElement;
+const randomBtn = formUser.querySelector("#btn-random") as HTMLButtonElement;
+const submitBtn = formUser.querySelector("#btn-submit") as HTMLButtonElement;
+const nameInput = formUser.querySelector("#input-name") as HTMLButtonElement;
+const mainSceneContent = document.querySelector(
+  "#main-scene"
+) as HTMLDivElement;
 
 export default class MainMenuScene extends Scene {
-  private textureLoader = new TextureLoader();
-
   private delta = 0;
-
+  public user?: IUser;
   private clock = new Clock();
-
   private animationMixer!: AnimationMixer;
 
   constructor() {
@@ -33,73 +39,50 @@ export default class MainMenuScene extends Scene {
     this.add(light);
 
     // Load the background texture
-    const bgTexture = this.textureLoader.load(bgImage);
-    this.background = bgTexture;
+    this.background = new Color("#d2e5d2");
   }
 
-  private displayAboutModal() {
-    const aboutModal = document.querySelector(
-      "#about-modal"
-    ) as HTMLInputElement;
-    aboutModal.classList.add("block");
-    aboutModal.classList.remove("hidden");
+  private createUser(event: SubmitEvent) {
+    if (!this.user) {
+      event.preventDefault();
+      try {
+        const formData = new FormData(formUser);
+        const name = formData.get("name") as string;
+        const user = new User({ name });
+        this.user = user.getInfo();
+      } catch (error) {
+        const message = error as string;
+        return createToast({ message, type: "error" });
+      }
+    }
+    return false;
   }
 
-  private hideAboutModal() {
-    const aboutModal = document.querySelector(
-      "#about-modal"
-    ) as HTMLInputElement;
-    aboutModal.classList.add("hidden");
-    aboutModal.classList.remove("block");
-  }
-
-  private displaySettingsModal() {
-    const aboutModal = document.querySelector(
-      "#settings-modal"
-    ) as HTMLInputElement;
-    aboutModal.classList.add("block");
-    aboutModal.classList.remove("hidden");
-  }
-
-  private hideSettingsModal() {
-    const aboutModal = document.querySelector(
-      "#settings-modal"
-    ) as HTMLInputElement;
-    aboutModal.classList.add("hidden");
-    aboutModal.classList.remove("block");
+  private async getRandomUser() {
+    try {
+      const apiURL = "https://randomuser.me/api/?nat=us,gb";
+      const response = await fetch(apiURL);
+      const { results } = await response.json();
+      const { first, last } = results[0]?.name;
+      nameInput.value = `${first} ${last}`;
+      nameInput.focus();
+      return false;
+    } catch (error: any) {
+      const message = error?.message as string;
+      return createToast({ message, type: "error" });
+    }
   }
 
   initialize() {
-    // Query Selectors
-    const btnAbout = document.querySelector("#btn-about") as HTMLButtonElement;
-    const btnAboutClose = document.querySelector(
-      "#btn-about-close"
-    ) as HTMLButtonElement;
-    const aboutModalOverlay = document.querySelector(
-      "#about-modal-overlay"
-    ) as HTMLDivElement;
+    formUser.addEventListener("submit", this.createUser);
+    submitBtn.addEventListener("click", formUser.submit);
+    randomBtn.addEventListener("click", this.getRandomUser);
 
-    const btnSettings = document.querySelector(
-      "#btn-settings"
-    ) as HTMLButtonElement;
-    const btnSettingsClose = document.querySelector(
-      "#btn-settings-close"
-    ) as HTMLButtonElement;
-    const settingsModalOverlay = document.querySelector(
-      "#settings-modal-overlay"
-    ) as HTMLDivElement;
-
-    // Event Listeners
-    btnAbout.addEventListener("click", this.displayAboutModal);
-    btnAboutClose.addEventListener("click", this.hideAboutModal);
-    aboutModalOverlay.addEventListener("click", this.hideAboutModal);
-
-    btnSettings.addEventListener("click", this.displaySettingsModal);
-    btnSettingsClose.addEventListener("click", this.hideSettingsModal);
-    settingsModalOverlay.addEventListener("click", this.hideSettingsModal);
-
-    if (!this.visible) {
-      this.visible = true;
+    if (this.visible) {
+      mainSceneContent.classList.add("block");
+      mainSceneContent.classList.remove("hidden");
+    } else {
+      this.visible = !this.visible;
     }
 
     if (!this.clock.running) {
@@ -112,5 +95,12 @@ export default class MainMenuScene extends Scene {
       this.delta = this.clock.getDelta();
       this.animationMixer.update(this.delta);
     }
+  }
+
+  hide() {
+    this.visible = false;
+    this.clock.stop();
+    mainSceneContent.classList.add("hidden");
+    mainSceneContent.classList.remove("block");
   }
 }
