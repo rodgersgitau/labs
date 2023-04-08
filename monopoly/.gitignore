@@ -64,3 +64,6 @@ typings/
 dist/
 .cache/
 .parcel-cache
+
+# Vite related files
+.vite/
