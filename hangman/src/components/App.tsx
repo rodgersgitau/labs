@@ -21,21 +21,21 @@ export const App = () => {
     "bg-[url('/images/backdrop.png')] bg-no-repeat bg-cover bg-center";
 
   return (
-    <section className="relative h-screen p-4 w-full bg-neutral-200 text-primary">
+    <section className="relative w-full h-screen p-4 bg-neutral-200 text-primary">
       <div className={`${bgStyles} ${container} flex items-center`}>
-        <div className="w-full h-full flex flex-col gap-24 items-center justify-center">
-          <h1 className="text-6xl lg:text-8xl uppercase font-serif text-secondary">
+        <div className="flex flex-col items-center justify-center w-full h-full gap-24">
+          <h1 className="font-serif text-6xl uppercase lg:text-8xl text-secondary">
             Hangman
           </h1>
-          <div className="max-w-md w-full flex flex-col gap-8">
+          <div className="flex flex-col w-full max-w-md gap-8">
             {dialogs.map(({ name, component }, idx) => {
               return (
                 <button
-                  id={`${name} - ${idx}`}
                   onClick={() => {
                     void setCurrentDialog(component);
                     void setOpenModal(true);
                   }}
+                  key={`btn-dialog-${Math.random() * idx}`}
                   className="w-full btn btn-lg btn-outline btn-secondary text-2xl uppercase font-serif font-[400]"
                 >
                   {name}
@@ -58,11 +58,11 @@ export const App = () => {
 
 const SampleContent1 = () => {
   return (
-    <div className="w-full h-max flex flex-col gap-10">
-      <strong className="text-xl font-bold font-sans capitalize">
+    <div className="flex flex-col w-full gap-10 h-max">
+      <strong className="font-sans text-xl font-bold capitalize">
         Heading 1
       </strong>
-      <p className="text-sm font-serif">
+      <p className="font-serif text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, nulla.
         Repellendus totam ipsam quia inventore aliquam sunt quam culpa
         voluptatem cum! Facere sunt quod omnis officiis nobis odio distinctio
@@ -79,11 +79,11 @@ const SampleContent1 = () => {
 
 const SampleContent2 = () => {
   return (
-    <div className="w-full h-max flex flex-col gap-10">
-      <strong className="text-xl font-bold font-sans capitalize">
+    <div className="flex flex-col w-full gap-10 h-max">
+      <strong className="font-sans text-xl font-bold capitalize">
         Heading 2
       </strong>
-      <p className="text-sm font-serif">
+      <p className="font-serif text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, nulla.
         Repellendus totam ipsam quia inventore aliquam sunt quam culpa
         voluptatem cum! Facere sunt quod omnis officiis nobis odio distinctio
@@ -100,11 +100,11 @@ const SampleContent2 = () => {
 
 const SampleContent3 = () => {
   return (
-    <div className="w-full h-max flex flex-col gap-10">
-      <strong className="text-xl font-bold font-sans capitalize">
+    <div className="flex flex-col w-full gap-10 h-max">
+      <strong className="font-sans text-xl font-bold capitalize">
         Heading 3
       </strong>
-      <p className="text-sm font-serif">
+      <p className="font-serif text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, nulla.
         Repellendus totam ipsam quia inventore aliquam sunt quam culpa
         voluptatem cum! Facere sunt quod omnis officiis nobis odio distinctio
