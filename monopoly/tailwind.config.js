@@ -11,6 +11,9 @@ export default {
           DEFAULT: "#29203F",
         },
       },
+      backgroundImage: {
+        "hero-pattern": "url('/images/backdrop.png')",
+      },
       fontFamily: {
         cursive: ["Comfortaa", "cursive"],
         serif: ["Fira Sans Condensed", "sans-serif"],

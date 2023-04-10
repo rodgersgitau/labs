@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Monopoly: Free monopoly game online!!</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Play Monopoly for free. Browser-based the classic board game with no download required." />
+  <link rel="stylesheet" href="./src/index.css" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+  <script defer src="/vendor/alpine/alpine.min.js"> </script>
+</head>
+
+<body
+  class="relative w-full h-full min-h-screen overflow-x-hidden overflow-y-auto font-serif text-white bg-blend-overlay bg-secondary bg-[url('/images/backdrop.png')]">
+  <!-- Button bar -->
+  <header class="fixed top-0 left-0 right-0 z-20 h-[5rem] w-full shadow-xl lg:gap-8 bg-primary">
+    <div class="flex flex-row flex-wrap items-center justify-between px-4 ">
+      <div class="flex items-center justify-center w-max">
+        <h1 class="text-lg text-center text-white uppercase md:text-2xl font-cursive">Monopoly</h1>
+      </div>
+      <div class="flex items-center py-2.5 gap-4 place-self-end">
+        <button id="btn-fullscreen" title="Fullscreen" class="space-x-2 btn btn-secondary btn-md btn-group ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+            <path fill-rule="evenodd"
+              d="M15 3.75a.75.75 0 01.75-.75h4.5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0V5.56l-3.97 3.97a.75.75 0 11-1.06-1.06l3.97-3.97h-2.69a.75.75 0 01-.75-.75zm-12 0A.75.75 0 013.75 3h4.5a.75.75 0 010 1.5H5.56l3.97 3.97a.75.75 0 01-1.06 1.06L4.5 5.56v2.69a.75.75 0 01-1.5 0v-4.5zm11.47 11.78a.75.75 0 111.06-1.06l3.97 3.97v-2.69a.75.75 0 011.5 0v4.5a.75.75 0 01-.75.75h-4.5a.75.75 0 010-1.5h2.69l-3.97-3.97zm-4.94-1.06a.75.75 0 010 1.06L5.56 19.5h2.69a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75v-4.5a.75.75 0 011.5 0v2.69l3.97-3.97a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="hidden font-light font-cursive md:block">Fullscreen</span>
+        </button>
+        <button id="btn-about" title="About" class="space-x-2 btn btn-secondary btn-md btn-group ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+            <path fill-rule="evenodd"
+              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="hidden font-light font-cursive md:block">About</span>
+        </button>
+        <button id="btn-settings" title="Settings" class="space-x-2 btn btn-secondary btn-md btn-group ">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span class="hidden font-light font-cursive md:block">Settings</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Board Container -->
+  <section id="board-scene" class="relative z-10">
+    <div class="fixed mt-[5rem] bottom-4 top-4 left-4 right-4 overflow-y-auto transition-opacity">
+      <div class="flex flex-col w-full h-full gap-8 m-auto xl:flex-row">
+        <!-- Board goes here.. -->
+        <div class="order-2 xl:order-1 xl:w-1/4 w-full min-h-[25vh] h-full bg-secondary rounded-lg shadow-lg">
+          <div class="flex items-center justify-center h-[25vh]">Left</div>
+        </div>
+        <div
+          class="order-1 xl:w-2/4 xl:order-2 flex-1 w-full h-max p-4 xl:h-full rounded-lg shadow-lg flex items-center justify-center bg-blend-overlay bg-primary/70 bg-[url('/images/background.jpg')]">
+          <div id="board-wrapper" class="w-[20rem] h-[20rem] lg:w-[40rem] lg:h-[40rem] xl:w-[50rem] xl:h-[50rem]">
+            <canvas id="board" class="w-full h-full rounded-lg"></canvas>
+          </div>
+        </div>
+        <div class="order-1 xl:order-3 xl:w-1/4 w-full min-h-[25vh] h-full bg-secondary rounded-lg shadow-lg">
+          <div class="flex items-center justify-between h-full gap-4 p-2 xl:gap-8 xl:p-8 xl:flex-col">
+            <div class="w-1/2 h-full p-4 border shadow-xl xl:h-1/2 xl:w-full rounded-xl border-neutral-100">
+              <div class="flex flex-col gap-4 xl:gap-8">
+                <h2 class="font-light capitalize font-cursive text-neutral-100">Players</h2>
+              </div>
+            </div>
+            <div class="w-1/2 h-full p-4 border shadow-xl xl:h-1/2 xl:w-full rounded-xl border-neutral-100">
+              <div class="flex flex-col gap-4 xl:gap-8">
+                <h2 class="font-light capitalize font-cursive text-neutral-100">Properties</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Main Scene -->
+  <section id="main-scene" class="relative z-10 !hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed mt-[5rem] bottom-[50%] left-0 right-0 transition-all translate-y-[50%] z-10 overflow-y-auto ">
+      <div
+        class="flex items-center justify-center m-auto max-w-sm xl:max-w-lg p-6 xl:p-8 min-h-[20rem] rounded-xl shadow-lg bg-primary text-white">
+        <div class="flex flex-col gap-10">
+          <div class="w-full h-[6rem]">
+            <img alt="monopoly logo" src="/images/logo.png" class="block object-cover w-full h-auto bg-white" />
+          </div>
+          <form id="form-user" class="flex flex-col items-center w-full gap-10">
+            <div class="flex items-center justify-between w-full gap-8">
+              <input required type="text" id="input-name" name="name" placeholder="Enter Name" maxlength="25"
+                class="flex-1 bg-transparent rounded !text-white input input-ghost input-bordered input-secondary ring-secondary-focus" />
+              <button id="btn-random" type="button" title="random name"
+                class="font-light btn btn-secondary font-cursive">
+                <img class="w-8 h-8" src="/images/dices.png" alt="dices" />
+              </button>
+            </div>
+            <button id="btn-submit" type="submit"
+              class="w-full space-x-4 btn btn-lg btn-secondary btn-group-horizontal font-cursive">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd"
+                  d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+                  clip-rule="evenodd" />
+              </svg>
+
+              <span>Play Game</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About game modal -->
+  <section id="about-modal" class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div id="about-modal-overlay" class="fixed inset-0 transition-opacity bg-opacity-75 bg-primary/90"></div>
+
+    <div class="fixed mt-[5rem] top-[50%] left-0 right-0 transition-all translate-y-[-50%] z-10 overflow-y-auto">
+      <div
+        class="relative m-auto min-w-sm lg:max-w-lg xl:max-w-xl max-w-sm p-6 xl:p-8 min-h-[20rem] rounded-xl shadow-lg bg-secondary text-white">
+        <button id="btn-about-close" class="absolute top-2 right-2 btn btn-sm btn-circle btn-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd"
+              d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <main class="flex flex-col w-full h-full min-h-[20rem] gap-8 py-8">
+          <div class="flex flex-col gap-8">
+            <div class="w-full h-[6rem]">
+              <img alt="monopoly logo" src="/images/logo.png" class="block object-cover w-full h-auto bg-white" />
+            </div>
+            <p class="font-sans text-base">
+              All Monopoly&trade; audio, visual and textual content on this site are protected by trademarks, copyrights
+              and other Intellectual Property rights owned by Hasbro&trade;
+              or its subsidiaries, licensors, licensees, suppliers and accounts.
+            </p>
+          </div>
+          <div class="text-lg font-semibold font-cursive">Copyright &copy; 2023 </div>
+          <div class="flex w-full gap-4 mt-auto h-max">
+            <div class="flex items-center gap-2 text-xs ">
+              <span class="text-current">Photos by:</span>
+              <a title="monopoly icons" href="https://www.flaticon.com/free-icons/monopoly"
+                class="w-[10ch] text-green-500 hover:underline hover:underline-offset-2">
+                Unsplash
+              </a>
+            </div>
+            <div class="flex items-center gap-2 text-xs">
+              <span class="text-current">Icons by:</span>
+              <a title="monopoly icons" href="https://game-icons.net/"
+                class="w-[10ch] text-green-500 hover:underline hover:underline-offset-2">
+                Game Icons
+              </a>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Settings game modal -->
+  <div id="settings-modal" class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div id="settings-modal-overlay" class="fixed inset-0 transition-opacity bg-opacity-75 bg-primary/90"></div>
+
+    <div class="fixed top-[50%] left-0 right-0 transition-all translate-y-[-50%] z-10 overflow-y-auto">
+      <div
+        class="relative m-auto min-w-sm lg:max-w-lg xl:max-w-xl max-w-sm p-6 xl:p-8 min-h-[20rem] rounded-xl shadow-lg bg-secondary text-white">
+        <button id="btn-settings-close" class="absolute top-2 right-2 btn btn-sm btn-circle btn-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd"
+              d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <main class="flex flex-col w-full gap-8 py-8">
+          <h3 class="w-full text-xl font-semibold capitalize font-cursive">How to play</h3>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-4">
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="money-bill-1" class="w-6 h-6 "
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="currentColor"
+                  d="M400 256C400 317.9 349.9 368 288 368C226.1 368 176 317.9 176 256C176 194.1 226.1 144 288 144C349.9 144 400 194.1 400 256zM272 224V288H264C255.2 288 248 295.2 248 304C248 312.8 255.2 320 264 320H312C320.8 320 328 312.8 328 304C328 295.2 320.8 288 312 288H304V208C304 199.2 296.8 192 288 192H272C263.2 192 256 199.2 256 208C256 216.8 263.2 224 272 224zM0 128C0 92.65 28.65 64 64 64H512C547.3 64 576 92.65 576 128V384C576 419.3 547.3 448 512 448H64C28.65 448 0 419.3 0 384V128zM48 176V336C83.35 336 112 364.7 112 400H464C464 364.7 492.7 336 528 336V176C492.7 176 464 147.3 464 112H112C112 147.3 83.35 176 48 176z">
+                </path>
+              </svg>
+              <p class="font-sans text-base">All players start with $1500.</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="dice" class="w-6 h-6" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path fill="currentColor"
+                  d="M575.1 192h-102.2c3.551 10.11 5.748 20.73 5.748 31.77c0 25.64-9.984 49.75-28.12 67.89L320 423.2v24.84C320 483.3 348.7 512 383.1 512h191.1c35.35 0 63.1-28.65 63.1-63.1v-191.1C639.1 220.7 611.3 192 575.1 192zM479.1 376c-13.25 0-23.1-10.75-23.1-23.1c0-13.26 10.75-23.1 23.1-23.1s23.1 10.74 23.1 23.1C503.1 365.3 493.3 376 479.1 376zM447.5 223.8c0-16.38-6.249-32.76-18.75-45.26L269 18.73C256.5 6.238 240.3 0 223.1 0S191 6.238 178.5 18.73l-159.8 159.8C6.235 191-.0011 207.6-.0011 223.1s6.236 32.57 18.73 45.06l159.8 159.8c12.5 12.5 28.88 18.74 45.26 18.74s32.76-6.248 45.25-18.74l159.8-159.8C441.3 256.5 447.5 240.1 447.5 223.8zM394.9 235.1l-159.8 159.8c-4.076 4.076-8.838 4.686-11.31 4.686c-2.477 0-7.238-.6094-11.31-4.686L52.67 235.1C48.59 231 47.99 226.2 47.99 223.8s.6074-7.236 4.686-11.31l159.8-159.8c4.082-4.08 8.844-4.689 11.32-4.689s7.234 .6094 11.31 4.687l159.8 159.8c4.078 4.078 4.687 8.84 4.687 11.31S398.9 231 394.9 235.1zM223.8 301.6c-12.79 0-23.1 10.29-23.1 23.1c0 13.76 11.25 23.1 23.1 23.1c13.73 0 24-11.22 24-23.1C247.8 312.8 237.5 301.6 223.8 301.6zM223.8 199.8c-13.76 0-23.1 11.25-23.1 23.1c0 12.84 10.34 23.1 23.1 23.1c13.71 0 24-11.21 24-23.1C247.8 210.1 237.5 199.8 223.8 199.8zM121.9 199.8c-13.76 0-24 11.25-24 23.1c0 12.79 10.29 23.1 24 23.1c13.71 0 23.1-11.2 23.1-23.1C145.9 210.1 135.7 199.8 121.9 199.8zM325.6 199.8c-13.76 0-24 11.25-24 23.1c0 12.79 10.29 23.1 24 23.1c13.71 0 24-11.21 24-23.1C349.6 210.1 339.3 199.8 325.6 199.8zM223.8 97.94c-12.79 0-23.1 10.29-23.1 23.1c0 13.76 11.25 23.1 23.1 23.1c13.73 0 24-11.22 24-23.1C247.8 109.1 237.5 97.94 223.8 97.94z">
+                </path>
+              </svg>
+              <div class="font-sans">
+                <p class="text-base">On your turn, roll the dice to move forward.</p>
+                <small class="opacity-80">Got doubles? You’ll have another turn!</small>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="hotel" class="w-6 h-6" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                  d="M176 96C184.8 96 192 103.2 192 112V144C192 152.8 184.8 160 176 160H144C135.2 160 128 152.8 128 144V112C128 103.2 135.2 96 144 96H176zM224 112C224 103.2 231.2 96 240 96H272C280.8 96 288 103.2 288 112V144C288 152.8 280.8 160 272 160H240C231.2 160 224 152.8 224 144V112zM368 96C376.8 96 384 103.2 384 112V144C384 152.8 376.8 160 368 160H336C327.2 160 320 152.8 320 144V112C320 103.2 327.2 96 336 96H368zM128 208C128 199.2 135.2 192 144 192H176C184.8 192 192 199.2 192 208V240C192 248.8 184.8 256 176 256H144C135.2 256 128 248.8 128 240V208zM272 192C280.8 192 288 199.2 288 208V240C288 248.8 280.8 256 272 256H240C231.2 256 224 248.8 224 240V208C224 199.2 231.2 192 240 192H272zM320 208C320 199.2 327.2 192 336 192H368C376.8 192 384 199.2 384 208V240C384 248.8 376.8 256 368 256H336C327.2 256 320 248.8 320 240V208zM488 0C501.3 0 512 10.75 512 24C512 37.25 501.3 48 488 48H480V464H488C501.3 464 512 474.7 512 488C512 501.3 501.3 512 488 512H24C10.75 512 0 501.3 0 488C0 474.7 10.75 464 24 464H32V48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H488zM80 48V464H208V384H176C167.2 384 159.9 376.8 161.3 368.1C168.9 322.6 208.4 288 256 288C303.6 288 343.1 322.6 350.7 368.1C352.1 376.8 344.8 384 336 384H304V464H432V48H80z">
+                </path>
+              </svg>
+              <div class="font-sans">
+                <p class="text-base">Purchase valuable properties and grow your financial empire.</p>
+                <small class="opacity-80">Once you own a property, other players will pay rent when they land on
+                  it.</small>
+              </div>
+            </div>
+          </div>
+          <h3 class="w-full text-xl font-semibold capitalize font-cursive">Own a full property set ?</h3>
+          <ul class="flex flex-col gap-4 px-4 list-disc">
+            <li class="text-base">Start building houses and hotels</li>
+            <li class="text-base">
+              Players will pay you a large amount of money when they land on properties with buildings.
+            </li>
+            <li class="text-base">
+              Build hotels to maximize income and make other players lose their money.
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-4">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="flag-pennant" class="w-8 h-8 "
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor"
+                d="M64 32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V32C0 14.3 14.3 0 32 0S64 14.3 64 32zm24-2.9l32.6 12.5 376 144c9.3 3.6 15.4 12.5 15.4 22.4s-6.1 18.9-15.4 22.4l-376 144L88 386.9V352 64 29.1z">
+              </path>
+            </svg>
+            <h3 class="w-full text-xl font-semibold capitalize font-cursive">
+              Be rich. Get richer. Do not bankrupt !!
+            </h3>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Credits
+  <footer class="flex flex-col w-full gap-2 p-4 place-items-end place-self-end">
+    <div class="flex items-center gap-2 text-xs ">
+      <span class="text-current">Photos by:</span>
+      <a title="monopoly icons" href="https://www.flaticon.com/free-icons/monopoly"
+        class="w-[10ch] text-purple-500 hover:underline hover:underline-offset-2">
+        Unsplash
+      </a>
+    </div>
+    <div class="flex items-center gap-2 text-xs">
+      <span class="text-current">Icons by:</span>
+      <a title="monopoly icons" href="https://www.flaticon.com/free-icons/monopoly"
+        class="w-[10ch] text-purple-500 hover:underline hover:underline-offset-2">
+        Flaticon
+      </a>
+    </div>
+  </footer> -->
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

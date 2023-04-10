@@ -1,0 +1,101 @@
+import { FormEvent, useCallback, useRef, useState } from "react";
+
+import { getRandomUser } from "../helpers";
+
+const MainMenu = () => {
+  const formRef = useRef(null);
+  const [formInput, setFormInput] = useState<string>("");
+
+  const generateUser = useCallback(() => {
+    if (formRef.current) {
+      try {
+        getRandomUser().then((val) => setFormInput(val));
+      } catch (error) {
+        console.error(error as string);
+      }
+    }
+  }, [formRef.current]);
+
+  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (formInput) {
+      console.log(formInput);
+    }
+    return false;
+  };
+
+  return (
+    <section className="relative z-10">
+      <div className="fixed mt-[5rem] bottom-[50%] left-0 right-0 transition-all translate-y-[50%] z-10 overflow-y-auto ">
+        <div className="flex items-center justify-center m-auto max-w-sm xl:max-w-lg p-6 xl:p-8 min-h-[20rem] rounded-xl shadow-lg bg-primary text-white">
+          <div className="flex flex-col gap-10">
+            <div className="w-full h-[6rem]">
+              <img
+                alt="monopoly logo"
+                src="/images/logo.png"
+                className="block object-cover w-full h-auto bg-white"
+              />
+            </div>
+            <form
+              ref={formRef}
+              onSubmit={submitHandler}
+              className="flex flex-col items-center w-full gap-10"
+            >
+              <div className="flex flex-col items-center justify-between w-full gap-8 lg:flex-row">
+                <input
+                  required
+                  name="name"
+                  type="text"
+                  maxLength={25}
+                  value={formInput}
+                  placeholder="Enter Name"
+                  onChange={(e) => {
+                    setFormInput(e.currentTarget.value);
+                  }}
+                  className="w-full lg:flex-1 bg-transparent rounded text-base !text-slate-300 input-lg input-ghost input-bordered input-secondary ring-secondary-focus"
+                />
+                <button
+                  type="button"
+                  title="random name"
+                  onClick={generateUser}
+                  className="w-full space-x-4 !bg-orange-500/60 !hover:bg-orange-500/100 lg:w-max btn btn-lg border-0 btn-group-horizontal"
+                >
+                  <img
+                    className="w-8 h-8"
+                    src="/images/dices.png"
+                    alt="dices"
+                  />
+                  <span className="font-light capitalize font-cursive">
+                    Random
+                  </span>
+                </button>
+              </div>
+              <button
+                id="btn-submit"
+                type="submit"
+                className="w-full space-x-4 btn btn-lg btn-secondary btn-group-horizontal font-cursive"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+
+                <span>Play Game</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default MainMenu;
