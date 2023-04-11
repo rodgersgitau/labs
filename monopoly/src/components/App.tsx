@@ -1,28 +1,79 @@
-import { ReactNode } from "react";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
-import { Environment, OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { AuthProvider, useAuth } from "../hooks";
+import { DefaultLayout } from "../layout";
+import { IndexPage, LoginPage, RegisterPage } from "../pages";
 
-import MainMenu from "../views/MainMenu";
+function RequireAuth() {
+  let auth = useAuth();
+  let location = useLocation();
 
-const Experience = ({ children }: { children?: ReactNode }) => {
-  return (
-    <Canvas shadows camera={{ position: [-5, 1, 6], fov: 25 }}>
-      <OrbitControls />
-      <ambientLight intensity={0.2} />
-      <Environment preset="sunset" blur={0.8} />
-      <group position={[0, -1, 0]}>{children}</group>
-    </Canvas>
-  );
-};
+  if (!auth.user) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
+  return <Outlet />;
+}
 
 function App() {
+  let auth = useAuth();
   return (
-    <main className="relative z-0 min-h-screen text-white bg-secondary">
-      <div className="fixed inset-0 bg-bottom bg-no-repeat bg-hero-pattern">
-        <MainMenu />
-      </div>
-    </main>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<IndexPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
+          <Route element={<RequireAuth />}>
+            <Route
+              path="/dashboard"
+              element={
+                <DefaultLayout>
+                  {auth && (
+                    <span className="text-xl">
+                      {JSON.stringify(auth, null, 2)}
+                    </span>
+                  )}
+                </DefaultLayout>
+              }
+            />
+          </Route>
+          <Route
+            path="/protected"
+            element={
+              <DefaultLayout>
+                {auth && (
+                  <span className="text-xl">
+                    {JSON.stringify(auth, null, 2)}
+                  </span>
+                )}
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <DefaultLayout>
+                <div className="flex flex-col">
+                  <h1 className="text-8xl">Not Found!!</h1>
+                </div>
+              </DefaultLayout>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
