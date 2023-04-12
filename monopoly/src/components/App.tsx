@@ -9,7 +9,7 @@ import {
 
 import { AuthProvider, useAuth } from "../hooks";
 import { DefaultLayout } from "../layout";
-import { IndexPage, LoginPage, RegisterPage } from "../pages";
+import { IndexPage, LoginPage, NotFound, RegisterPage } from "../pages";
 
 function RequireAuth() {
   let auth = useAuth();
@@ -61,16 +61,7 @@ function App() {
               </DefaultLayout>
             }
           />
-          <Route
-            path="*"
-            element={
-              <DefaultLayout>
-                <div className="flex flex-col">
-                  <h1 className="text-8xl">Not Found!!</h1>
-                </div>
-              </DefaultLayout>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

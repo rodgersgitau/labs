@@ -1,27 +1,19 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 
-export interface BrandProps {
-  description?: string;
-}
+export interface BrandProps {}
 
-export const Brand: FC<BrandProps> = ({ description }) => {
+export const Brand: FC<BrandProps> = () => {
   return (
-    <section className="flex flex-col w-full gap-8 h-max">
-      <div className="w-full h-max">
+    <Link to="/" className="flex flex-col w-full h-full gap-8">
+      <div className="w-full h-full p-2 rounded-lg bg-slate-100">
         <img
           alt="monopoly logo"
           src="/images/logo.png"
-          className="block object-cover w-full h-auto bg-white"
+          className="object-cover w-full h-auto rounded bg-inherit"
         />
       </div>
-      {description && (
-        <div className="flex items-center w-full">
-          <small className="font-sans font-semibold capitalize text-neutral-500">
-            {description}
-          </small>
-        </div>
-      )}
-    </section>
+    </Link>
   );
 };
 
