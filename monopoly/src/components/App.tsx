@@ -9,7 +9,13 @@ import {
 
 import { AuthProvider, useAuth } from "../hooks";
 import { DefaultLayout } from "../layout";
-import { IndexPage, LoginPage, NotFound, RegisterPage } from "../pages";
+import {
+  GamePage,
+  IndexPage,
+  LoginPage,
+  NotFound,
+  RegisterPage,
+} from "../pages";
 
 function RequireAuth() {
   let auth = useAuth();
@@ -35,6 +41,7 @@ function App() {
           <Route path="/" element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<RegisterPage />} />
+          <Route path="/game" element={<GamePage />} />
           <Route element={<RequireAuth />}>
             <Route
               path="/dashboard"
@@ -49,18 +56,6 @@ function App() {
               }
             />
           </Route>
-          <Route
-            path="/protected"
-            element={
-              <DefaultLayout>
-                {auth && (
-                  <span className="text-xl">
-                    {JSON.stringify(auth, null, 2)}
-                  </span>
-                )}
-              </DefaultLayout>
-            }
-          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
