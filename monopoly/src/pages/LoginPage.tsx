@@ -16,7 +16,7 @@ export default function Login() {
     event.preventDefault();
     setLoading(true);
     try {
-      await auth.signIn(formValues.email, formValues.password);
+      await auth.signInWithEmail(formValues.email, formValues.password);
       void setLoading(false);
     } catch (error) {
       console.log(error);

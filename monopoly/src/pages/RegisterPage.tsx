@@ -1,7 +1,6 @@
 import { FormEvent, useState } from "react";
 import { FiLoader, FiUserPlus } from "react-icons/fi";
 
-import { Brand } from "../components";
 import { useAuth } from "../hooks";
 import { DefaultLayout } from "../layout";
 
@@ -17,7 +16,7 @@ export default function Register() {
     event.preventDefault();
     setLoading(true);
     try {
-      await auth.signIn(formValues.email, formValues.password);
+      await auth.signInWithEmail(formValues.email, formValues.password);
       void setLoading(false);
     } catch (error) {
       console.log(error);

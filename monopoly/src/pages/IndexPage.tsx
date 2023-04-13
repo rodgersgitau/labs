@@ -1,11 +1,17 @@
-import { FormEvent, useCallback, useRef, useState } from "react";
+import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { getRandomUser } from "../helpers";
 import { DefaultLayout } from "../layout";
 
 export default function IndexPage() {
   const formRef = useRef(null);
-  const [formInput, setFormInput] = useState<string>("");
+  const navigate = useNavigate();
+  const [formInput, setFormInput] = useState<string>(
+    useMemo(() => {
+      return localStorage.getItem("username") || "";
+    }, [])
+  );
 
   const generateUser = useCallback(() => {
     if (formRef.current) {
@@ -20,7 +26,8 @@ export default function IndexPage() {
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formInput) {
-      console.log(formInput);
+      localStorage.setItem("username", formInput);
+      return void navigate("/game");
     }
     return false;
   };
