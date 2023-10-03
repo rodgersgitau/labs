@@ -1,7 +1,19 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { tamaguiExtractPlugin, tamaguiPlugin } from "@tamagui/vite-plugin";
+import react from "@vitejs/plugin-react-swc";
+import { defineConfig } from "vite";
 
-// https://vitejs.dev/config/
+const shouldExtract = process.env.EXTRACT === "1";
+
+const tamaguiConfig = {
+  components: ["tamagui"],
+  config: "src/config/tamagui.config.ts",
+};
+
 export default defineConfig({
-  plugins: [react()],
-})
+  clearScreen: true,
+  plugins: [
+    react(),
+    tamaguiPlugin(tamaguiConfig),
+    shouldExtract ? tamaguiExtractPlugin(tamaguiConfig) : null,
+  ].filter(Boolean),
+});
