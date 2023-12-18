@@ -1,0 +1,13 @@
+{
+  "name": "@rodgersgitau/labs",
+  "private": false,
+  "scripts": {
+    "dev": "npx lerna run dev",
+    "build": "pnpm clean && npx lerna run build",
+    "clean": "rm -rf node_modules && npx lerna clean -y"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.0.1"
+  }
+}
