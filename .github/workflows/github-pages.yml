@@ -1,10 +1,11 @@
-name: Website
+name: Deploy Website
 
 on:
   push:
     branches:
       - master
-      - deploy-fix
+      - "deploy-fix"
+      - "releases/**"
     paths:
       - "ui/client/**"
   workflow_dispatch:
