@@ -1,9 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
-    "compilerOptions": {
-    "baseUrl": ".",
+  "compilerOptions": {
+    "baseUrl": "/home/gitau/Coding/dev/labs/ui/client",
     "paths": {
-      "@/*": ["src/*"],
-    }
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

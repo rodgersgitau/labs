@@ -1,13 +1,35 @@
 ---
-import '@/styles/globals.css';
+import "@/styles/globals.css";
 
-import {Image} from "astro:assets"
+import Header from "@/components/Header";
+import { siteConfig } from "@/config";
 
-import Navbar from "@/components/Navbar.astro";
-import { Site } from "@/lib/config";
-
+const currentPath = Astro.url.pathname;
 ---
 
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>
 
 <html lang="en">
   <head>
@@ -16,14 +38,51 @@ import { Site } from "@/lib/config";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{Site.title}</title>
+    <title>{siteConfig.title}</title>
   </head>
-  <body class="bg-black/80 text-white/80">
-    <div class="relative flex flex-col gap-8 p-8 min-h-[100svh]">
-      <Navbar />
-      <main class="flex flex-col items-center justify-center flex-grow py-4">
-        <slot/>
-      </main>
+  <body class="relative flex flex-col w-full h-full min-h-[100vh]">
+    <div class="fixed inset-0 text-pink-500/40 -z-50 opacity-20">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+        <g fill="none" stroke="currentcolor" stroke-width="1.5">
+          <path
+            d="M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63"
+          ></path>
+          <path
+            d="M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764"
+          ></path>
+          <path
+            d="M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880"
+          ></path>
+          <path
+            d="M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382"
+          ></path>
+          <path
+            d="M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269"
+          ></path>
+        </g>
+        <g fill="currentcolor">
+          <circle cx="769" cy="229" r="4"></circle>
+          <circle cx="539" cy="269" r="4"></circle>
+          <circle cx="603" cy="493" r="4"></circle>
+          <circle cx="731" cy="737" r="4"></circle>
+          <circle cx="520" cy="660" r="4"></circle>
+          <circle cx="309" cy="538" r="4"></circle>
+          <circle cx="295" cy="764" r="4"></circle>
+          <circle cx="40" cy="599" r="4"></circle>
+          <circle cx="102" cy="382" r="4"></circle>
+          <circle cx="127" cy="80" r="4"></circle>
+          <circle cx="370" cy="105" r="4"></circle>
+          <circle cx="578" cy="42" r="4"></circle>
+          <circle cx="237" cy="261" r="4"></circle>
+          <circle cx="390" cy="382" r="4"></circle>
+        </g>
+      </svg>
     </div>
+    <Header client:load pathname={currentPath} />
+    <main
+      class="container flex flex-col items-center justify-center flex-grow py-4 max-w-screen-2xl"
+    >
+      <slot />
+    </main>
   </body>
 </html>
