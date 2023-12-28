@@ -1,0 +1,3 @@
+{
+  "extends": "@gitau-labs/typescript-config/base.json"
+}

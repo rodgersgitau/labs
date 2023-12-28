@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Astro",
+    "extends": "./base.json",
+    "compilerOptions": {
+        "baseUrl": "apps/web/",
+        "paths": {
+            "@config/*": [
+                "src/config/*"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@data/*": [
+                "src/data/*"
+            ],
+            "@layouts/*": [
+                "src/layouts/*"
+            ],
+            "@lib/*": [
+                "src/lib/*"
+            ],
+            "@styles/*": [
+                "src/styles/*"
+            ],
+        }
+    }
+}

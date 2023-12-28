@@ -1,14 +1,20 @@
 {
-  "name": "@rodgersgitau/labs",
-  "private": false,
+  "name": "gitau-labs",
+  "private": true,
   "scripts": {
-    "dev": "npx lerna run dev",
-    "build": "pnpm clean && npx lerna run build",
-    "clean": "rm -rf node_modules && npx lerna clean -y"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "packageManager": "pnpm@8.x",
-  "dependencies": {},
   "devDependencies": {
-    "lerna": "^8.0.1"
+    "@gitau-labs/eslint-config": "workspace:*",
+    "@gitau-labs/typescript-config": "workspace:*",
+    "prettier": "^3.1.0",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=18"
   }
 }
