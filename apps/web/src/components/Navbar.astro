@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+---
+
+<header class="flex items-center justify-between gap-8 py-4">
+  <div class="relative w-16 h-auto">
+    <Image
+      height={50}
+      width={200}
+      src="/images/logo.png"
+      alt="Gitau Lab"
+      class="object-cover"
+    />
+  </div>
+  <div
+    class="flex items-center justify-center flex-1 gap-4 text-sm font-bold uppercase"
+  >
+    <a href="/" class="">Home</a>
+    <a href="/games" class="">Games</a>
+    <a href="/effects" class="">Effects</a>
+    <a href="/ui" class="">UI</a>
+  </div>
+
+  <span>{new Date().toDateString()}</span>
+</header>
