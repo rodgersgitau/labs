@@ -1,0 +1,26 @@
+---
+import Slides from "@/components/Slides";
+import PageLayout from "@/layouts/PageLayout.astro";
+
+import data from "@/data";
+import { slugify } from "@/lib/utils";
+---
+
+<PageLayout>
+  <div
+    class="grid items-center justify-center flex-grow w-full gap-8 pt-[10svh]"
+  >
+    <div class="container relative w-full">
+      <Slides
+        client:visible
+        className="w-full max-w-2xl"
+        contentStyle="w-full aspect-[16/9] !p-0"
+        items={data?.map((item) => ({
+          title: item.name,
+          image: item.image,
+          link: `/games/${slugify(item.name)}`,
+        }))}
+      />
+    </div>
+  </div>
+</PageLayout>

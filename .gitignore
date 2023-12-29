@@ -2,11 +2,9 @@
 
 # Dependencies
 node_modules
+**/**/node_modules 
 .pnp
 .pnp.js
-apps/*/node_modules
-packages/*/node_modules
-packages/*/*/node_modules
 
 # Local env files
 .env

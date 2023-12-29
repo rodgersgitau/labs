@@ -1,12 +1,11 @@
-import { buttonVariants } from "@/components/ui/button";
-import { Icons } from "@/components/Icons";
-import Link from "@/components/Link";
-import MainNav from "@/components/MainNav";
-import { MobileNav } from "@/components/MobileNav";
-import ModeToggle from "@/components/ModeToggle";
-
-import { siteConfig } from "@/config";
-import { cn } from "@/lib/utils";
+import MainNav from '@/components/MainNav';
+import { MobileNav } from '@/components/MobileNav';
+import ModeToggle from '@/components/ModeToggle';
+import { buttonVariants } from '@/components/ui/button';
+import { Icons } from '@/components/ui/icons';
+import Link from '@/components/ui/link';
+import { siteConfig } from '@/config';
+import { cn } from '@/lib/utils';
 
 interface HeaderProps {
   pathname: string;
@@ -14,12 +13,13 @@ interface HeaderProps {
 
 const Header = ({ pathname }: HeaderProps) => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-current/70 dark:border-border/40 bg-none backdrop-blur supports-[backdrop-filter]:bg-background/10">
-      <div className="container flex items-center py-4 h-18 max-w-screen-2xl">
-        <div className="flex-1 w-max">
+    <header className="absolute inset-0 z-50 border-b h-max border-current/70 dark:border-border/40">
+      <div className="container flex items-center justify-between mx-auto min-h-16 max-w-screen-2xl">
+        <div className="grid items-center flex-1">
           <MainNav pathname={pathname} />
           <MobileNav pathname={pathname} />
         </div>
+
         <div className="flex items-center gap-4 ml-auto w-max">
           <Link href={siteConfig.links.github} target="_blank">
             <div
