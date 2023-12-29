@@ -1,4 +1,4 @@
-import { siteConfig } from "../config/index.ts";
+import { siteConfig } from '../config/index.ts';
 
 export interface DataType {
   name: string;
