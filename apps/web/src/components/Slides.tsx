@@ -1,13 +1,20 @@
-import { PlayCircleIcon } from 'lucide-react';
+"use client";
 
-import { buttonVariants } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { PlayCircleIcon } from "lucide-react";
+
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
-    Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
-} from '@/components/ui/carousel';
-import { Image } from '@/components/ui/image';
-import Link from '@/components/ui/link';
-import { cn } from '@/lib/utils';
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Image from "@/components/ui/image";
+import Link from "@/components/ui/link";
+
+import { cn } from "@/lib/utils";
 
 interface SlidesProps {
   className?: string;
@@ -44,14 +51,14 @@ export default function Slides({
             <Card className="bg-transparent rounded-lg overflow-clip">
               <CardContent
                 className={cn(
-                  "flex items-center justify-center !border-0 p-6",
+                  "relative flex items-center justify-center !border-0 p-6",
                   contentStyle
                 )}
               >
-                <Image
+                <img
                   src={item.image}
                   alt={item.title}
-                  className="object-cover w-full"
+                  className="object-cover w-full h-full"
                 />
               </CardContent>
               <CardFooter
@@ -81,7 +88,7 @@ export default function Slides({
 
       <CarouselPrevious
         variant="ghost"
-        className="translate-x-4 bg-background text-foreground left-4"
+        className="!z-50 translate-x-4 bg-background text-foreground left-4"
       />
       <CarouselNext
         variant="ghost"

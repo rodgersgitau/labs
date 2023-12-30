@@ -52,8 +52,9 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply box-content p-0 m-0;
   }
+
   body {
     @apply min-h-screen font-sans antialiased bg-background text-foreground;
     /* font-feature-settings: "rlig" 1, "calt" 1; */
