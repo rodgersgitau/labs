@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import Header from "@/components/Header";
 import { siteConfig } from "@/config";
 
+import { Icons } from "@/components/ui/icons";
 import BackgroundGradient from "@/components/Gradient.astro";
 
 const currentPath = Astro.url.pathname;
@@ -40,13 +41,21 @@ const currentPath = Astro.url.pathname;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{siteConfig.title}</title>
+    <title>{siteConfig.name}</title>
   </head>
-  <body class="relative flex flex-col w-full h-full min-h-[100vh]">
+  <body
+    class="relative flex flex-col w-full h-full min-h-[100svh] overflow-x-clip"
+  >
+    <Icons.pattern
+      className="fixed inset-0 -z-10 text-foreground/20 opacity-20 dark:opacity-10"
+    />
     <BackgroundGradient />
 
     <Header client:load pathname={currentPath} />
-    <main class="flex flex-col items-center justify-center flex-grow">
+
+    <main
+      class="container flex flex-col items-center justify-center flex-grow h-full mx-auto max-w-screen-2xl"
+    >
       <slot />
     </main>
   </body>

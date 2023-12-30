@@ -2,12 +2,11 @@
 import { Icons } from "./ui/icons";
 ---
 
-<Icons.pattern
-  className="fixed inset-0 -z-40 text-foreground/20 opacity-20 dark:opacity-10"
-/>
-
 <div class="fixed inset-0 opacity-20 -z-50 blur">
-  <div class="gradient-bg">
+  <Icons.pattern
+    className="absolute inset-0 z-10 text-foreground/20 opacity-20 dark:opacity-10"
+  />
+  <div class="z-0 gradient-bg">
     <svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="goo">
@@ -74,13 +73,13 @@ import { Icons } from "./ui/icons";
     --circle-size: 80%;
     --blending: hard-light;
 
-    width: 100vw;
-    height: 100vh;
-    position: relative;
+    position: absolute;
     overflow: hidden;
     background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
 
     svg {
       display: none;

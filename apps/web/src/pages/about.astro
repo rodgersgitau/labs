@@ -1,9 +1,94 @@
 ---
+import { buttonVariants } from "@/components/ui/button";
+import { Icons } from "@/components/ui/icons";
+import Link from "@/components/ui/link";
+import { siteConfig } from "@/config";
 import PageLayout from "@/layouts/PageLayout.astro";
+import { cn } from "@/lib/utils";
 ---
 
 <PageLayout>
-  <div class="grid items-center justify-center flex-grow w-full gap-8">
-    <p>AboutPage, wrapped in a PageLayout!</p>
+  <div class="relative grid items-center flex-grow w-full gap-10 py-10 mx-auto">
+    <div class="relative w-full h-32 py-4 lg:h-48">
+      <!-- Avatar -->
+      <div
+        class="w-32 bg-center bg-no-repeat bg-cover rounded-full lg:w-48 aspect-square overflow-clip bg-avatar"
+      >
+      </div>
+      <!-- Line -->
+      <div
+        class="absolute left-0 right-0 h-px bg-current rounded-lg top-1/2 -z-10"
+      >
+      </div>
+
+      <!-- Title -->
+      <div
+        class="absolute left-0 right-0 ml-auto w-max md:w-2/3 -translate-y-1/4 md:mr-auto top-1/4"
+      >
+        <h1
+          class="text-2xl md:text-4xl text-foreground !leading-snug font-black text-gradient"
+        >
+          {siteConfig.author}
+        </h1>
+      </div>
+      <!-- Social Links -->
+      <div
+        class="absolute right-0 ml-auto -translate-y-3/4 md:-translate-y-1/2 md:top-1/4 top-3/4 w-max"
+      >
+        <Link href={siteConfig.authorLinks.github} target="_blank">
+          <div
+            class={cn(
+              buttonVariants({
+                size: "icon",
+                variant: "ghost",
+              })
+            )}
+          >
+            <Icons.gitHub className="w-4 h-4" />
+            <span class="sr-only">GitHub</span>
+          </div>
+        </Link>
+        <Link href={siteConfig.authorLinks.twitter} target="_blank">
+          <div
+            class={cn(
+              buttonVariants({
+                size: "icon",
+                variant: "ghost",
+              })
+            )}
+          >
+            <Icons.twitter className="w-4 h-4" />
+            <span class="sr-only">GitHub</span>
+          </div>
+        </Link>
+      </div>
+    </div>
+
+    <div class="grid items-center gap-10">
+      <div class="grid gap-4 text-center lg:text-left">
+        <h2 class="text-xl text-foreground !leading-snug font-black">Story</h2>
+        <p class="leading-loose tracking-[120%]">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste itaque
+          labore nobis dolor vel consectetur quam porro officia quas ut
+          sapiente, explicabo, veritatis expedita maxime voluptate architecto
+          rerum quaerat aut! Laudantium, voluptatibus ullam. Praesentium
+          consequatur quos nulla, impedit excepturi dolores? Obcaecati odit,
+          quidem architecto at ab, repellendus, tenetur minima fugiat doloribus
+          ipsam saepe natus perspiciatis aliquam molestias officia aliquid
+          provident. Nihil laborum soluta officia? Laborum eum deleniti dolore
+          rerum laboriosam, minus ipsum nesciunt id expedita dolores omnis
+          repudiandae iure labore aut quo inventore.
+        </p>
+      </div>
+      <div
+        class="grid justify-center w-full gap-4 text-center lg:justify-start lg:text-left"
+      >
+        <h2 class="text-xl text-foreground !leading-snug font-black">Tools</h2>
+
+        <div class="flex items-center w-full gap-8">
+          <div class="w-48 h-48 border"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </PageLayout>
