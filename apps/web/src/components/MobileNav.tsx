@@ -1,15 +1,15 @@
-import { Fragment, useState } from 'react';
+import { useState } from "react";
 
-import { Button } from '@/components/ui/button';
-import { Icons } from '@/components/ui/icons';
-import { Image } from '@/components/ui/image';
-import Link, { LinkProps, type } from '@/components/ui/link';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { siteConfig } from '@/config';
-import { cn } from '@/lib/utils';
+import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/ui/icons";
+import Image from "@/components/ui/image";
+import Link, { type LinkProps } from "@/components/ui/link";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { siteConfig } from "@/config";
+import { cn } from "@/lib/utils";
 
-export function MobileNav({ pathname }: { pathname: string }) {
+export default function MobileNav({ pathname }: { pathname: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,7 +20,6 @@ export function MobileNav({ pathname }: { pathname: string }) {
           className="px-0 space-x-4 text-base w-max hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
           <Icons.menu className="w-8 h-8" />
-          <span className="uppercase">Menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">

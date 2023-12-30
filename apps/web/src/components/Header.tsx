@@ -1,60 +1,27 @@
-import MainNav from '@/components/MainNav';
-import { MobileNav } from '@/components/MobileNav';
-import ModeToggle from '@/components/ModeToggle';
-import { buttonVariants } from '@/components/ui/button';
-import { Icons } from '@/components/ui/icons';
-import Link from '@/components/ui/link';
-import { siteConfig } from '@/config';
-import { cn } from '@/lib/utils';
+import MainNav from "@/components/MainNav";
+import MobileNav from "@/components/MobileNav";
+import ModeToggle from "@/components/ModeToggle";
+
+import Logo from "@/components/Logo";
 
 interface HeaderProps {
   pathname: string;
 }
 
-const Header = ({ pathname }: HeaderProps) => {
+export default function Header({ pathname }: HeaderProps) {
   return (
-    <header className="absolute inset-0 z-50 border-b h-max border-current/70 dark:border-border/40">
-      <div className="container flex items-center justify-between mx-auto min-h-16 max-w-screen-2xl">
-        <div className="grid items-center flex-1">
-          <MainNav pathname={pathname} />
+    <header className="sticky left-0 right-0 top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex items-center justify-between mx-auto max-w-screen-2xl">
+        <div className="flex items-center flex-1 gap-10 py-4">
           <MobileNav pathname={pathname} />
+          <Logo />
+          <MainNav pathname={pathname} />
         </div>
 
         <div className="flex items-center gap-4 ml-auto w-max">
-          <Link href={siteConfig.links.github} target="_blank">
-            <div
-              className={cn(
-                buttonVariants({
-                  size: "icon",
-                  variant: "ghost",
-                }),
-                "border-[0.5px] border-border"
-              )}
-            >
-              <Icons.gitHub className="w-4 h-4" />
-              <span className="sr-only">GitHub</span>
-            </div>
-          </Link>
-          <Link href={siteConfig.links.twitter} target="_blank">
-            <div
-              className={cn(
-                buttonVariants({
-                  size: "icon",
-                  variant: "ghost",
-                }),
-                "border-[0.5px] border-border"
-              )}
-            >
-              <Icons.twitter className="w-4 h-4" />
-              <span className="sr-only">GitHub</span>
-            </div>
-          </Link>
-
           <ModeToggle />
         </div>
       </div>
     </header>
   );
-};
-
-export default Header;
+}

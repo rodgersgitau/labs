@@ -1,4 +1,4 @@
-import { siteConfig } from '../config/index.ts';
+import { siteConfig } from "../config/index.ts";
 
 export interface DataType {
   name: string;
@@ -26,8 +26,7 @@ const data: DataType[] = [
     link: "https://matrixdigitalrain.netlify.app/",
     image: "/images/play/matrix-digital-rain.png",
     repository: `${REPO_LINK}/matrix-rain`,
-    description:
-      "Ever watched these cult favourite movies? This is the opening sequence",
+    description: "The opening sequence from these cult favourite movies",
   },
   {
     name: "Block Breaker",
@@ -43,8 +42,7 @@ const data: DataType[] = [
     link: "https://tetricks.netlify.app",
     image: "/images/play/tetris.png",
     repository: `${REPO_LINK}/tetris`,
-    description:
-      "A clone of the famous stacking game for different sized block shapes",
+    description: "The famous stacking game for different sized block shapes",
   },
   {
     name: "Noughts & Crosses",
@@ -52,7 +50,7 @@ const data: DataType[] = [
     link: "https://clone-tictactoe.netlify.app",
     image: "/images/play/tictactoe.png",
     repository: `${REPO_LINK}/nought-and-crosses`,
-    description: "The classic game also known as tictactoe",
+    description: "The classic game also known as tic-tac-toe",
   },
   {
     name: "Monopoly",
