@@ -19,10 +19,21 @@ export default function GameCard({ item, className }: GameCardProps) {
   return (
     <Card
       className={cn(
-        "relative mx-auto bg-card/40 w-full border-0 group hover:!scale-110 transition-all",
+        "relative mx-auto bg-card/40 w-full border-0 group hover:scale-110 transition",
         className
       )}
     >
+      <div
+        style={{
+          backgroundClip: "padding-box,border-box",
+          backgroundOrigin: "border-box",
+          border: " 2.25px solid",
+          borderImageSlice: 1,
+          borderImageSource: "linear-gradient(88.45deg,#c887ff -2.7%,#ffa9a9)",
+          clipPath: "inset(0 round 10px)",
+        }}
+        className="absolute inset-0 transition opacity-0 -z-10 group-hover:opacity-100 group-hover:bg-accent/80"
+      />
       <CardHeader>
         <div className="flex items-center w-full h-full gap-4">
           <div className="relative grid items-center w-48 p-2 transition-all group-hover:scale-110">
