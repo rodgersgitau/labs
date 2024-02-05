@@ -7,7 +7,7 @@ import Image from "@/components/ui/image";
 import Link from "@/components/ui/link";
 
 import { cn, slugify } from "@/lib/utils";
-import type { DataType } from "@/data";
+import type { DataType } from "@/data/index";
 
 interface GameCardProps {
   index: number;

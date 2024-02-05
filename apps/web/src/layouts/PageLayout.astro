@@ -2,7 +2,7 @@
 import "@/styles/globals.css";
 
 import Header from "@/components/Header";
-import { siteConfig } from "@/config";
+import { siteConfig } from "@/config/index";
 
 import { Icons } from "@/components/ui/icons";
 import BackgroundGradient from "@/components/Gradient.astro";
@@ -47,7 +47,7 @@ const currentPath = Astro.url.pathname;
     class="relative flex flex-col w-full h-full min-h-[100svh] overflow-x-clip"
   >
     <Icons.pattern
-      className="fixed inset-0 -z-10 text-foreground/20 opacity-20 dark:opacity-10"
+      class="fixed inset-0 -z-10 text-foreground/20 opacity-20 dark:opacity-10"
     />
     <BackgroundGradient />
 
