@@ -6,7 +6,7 @@ import Image from "@/components/ui/image";
 import Link, { type LinkProps } from "@/components/ui/link";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { siteConfig } from "@/config";
+import { siteConfig } from "@/config/index";
 import { cn } from "@/lib/utils";
 
 export default function MobileNav({ pathname }: { pathname: string }) {

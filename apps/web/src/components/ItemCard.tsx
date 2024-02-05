@@ -1,7 +1,7 @@
 import { Image } from '@/components/ui/image';
 import { cn } from '@/lib/utils';
 
-import type { DataType } from "@/data";
+import type { DataType } from "@/data/index";
 import type { ImgHTMLAttributes } from "react";
 
 interface ItemCardProps extends ImgHTMLAttributes<HTMLImageElement> {

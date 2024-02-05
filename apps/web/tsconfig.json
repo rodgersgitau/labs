@@ -5,8 +5,23 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "paths": {
-      "@/*": [
-        "src/*"
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/config/*": [
+        "src/config/*"
+      ],
+      "@/data/*": [
+        "src/data/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
       ],
     }
   }

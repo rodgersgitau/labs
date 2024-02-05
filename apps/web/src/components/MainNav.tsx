@@ -1,5 +1,5 @@
 import Link from "@/components/ui/link";
-import { siteConfig } from "@/config";
+import { siteConfig } from "@/config/index";
 import { cn } from "@/lib/utils";
 
 interface Props {
