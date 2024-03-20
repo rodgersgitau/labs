@@ -1,5 +1,3 @@
-"use client";
-
 import { PlayCircleIcon } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -11,7 +9,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "@/components/ui/image";
 import Link from "@/components/ui/link";
 
 import { cn } from "@/lib/utils";
