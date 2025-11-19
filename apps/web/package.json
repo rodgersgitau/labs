@@ -29,7 +29,7 @@
     "@tanstack/react-table": "^8.11.2",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
-    "astro": "^4.0.6",
+    "astro": "^5.15.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
